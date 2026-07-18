@@ -10,6 +10,17 @@ prompt_version: 2026-07-18-v1
 capture: complete
 content: substantive
 attempts: 2
+attempt_log:
+  - attempt: 1
+    model_version: "K3 (variant unknown)"
+    capture: failed
+    content: unavailable
+    note: "K3 did not complete. The cycle showed low quota, but the exact cause was not recorded."
+  - attempt: 2
+    model_version: "K2.6"
+    capture: complete
+    content: substantive
+    note: "Produced the stored response."
 ---
 
 # Kimi — Stocks / Markets — 2026-07-18
@@ -103,4 +114,4 @@ China's domestic deflation is unique — falling construction material prices am
 
 ## Capture notes
 
-K3 did not complete the task; K2.6 produced the captured substantive response. Backfilled during the SPEC v1.0 migration; the exact timestamp and memory setting were not recorded.
+The K3 attempt was unavailable; K2.6 produced the captured substantive response. Attempt detail was added during the SPEC v1.1 migration. Low quota was observed during the cycle, but its causal role cannot be determined retroactively; the exact timestamp and memory setting were not recorded.

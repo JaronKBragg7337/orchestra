@@ -10,6 +10,22 @@ prompt_version: 2026-07-18-v1
 capture: complete
 content: refused
 attempts: 3
+attempt_log:
+  - attempt: 1
+    model_version: "K3 (variant unknown)"
+    capture: failed
+    content: unavailable
+    note: "K3 generation failed and agent credits were refunded; exact cause unconfirmed."
+  - attempt: 2
+    model_version: "K3 (variant unknown)"
+    capture: failed
+    content: unavailable
+    note: "K3 generation failed again and agent credits were refunded; exact cause unconfirmed."
+  - attempt: 3
+    model_version: "K2.6"
+    capture: complete
+    content: refused
+    note: "Returned the refusal preserved below."
 ---
 
 # Kimi — AI / Tech Breakthroughs — 2026-07-18
@@ -28,4 +44,4 @@ Sorry, I cannot provide this information. Please feel free to ask another questi
 
 ## Capture notes
 
-K3 failed twice. K2.6 then returned the refusal preserved above. Backfilled during the SPEC v1.0 migration; the exact timestamp and memory setting were not recorded.
+Two K3 attempts were unavailable. K2.6 then returned the refusal preserved above. Attempt detail was added during the SPEC v1.1 migration. Low quota was observed during the cycle, but its causal role cannot be determined retroactively; the exact timestamp and memory setting were not recorded.

@@ -1,0 +1,1 @@
+{"schema_version":"1.0","event_id":"evt-20260718-tracker-initialized","event_type":"TRACKER_INITIALIZED","signal_id":null,"cycle_date":"2026-07-18","recorded_at":null,"payload":{"spec_version":"1.1","reason":"Tracker scaffolding created; no synthesis or signal entry has occurred."}}

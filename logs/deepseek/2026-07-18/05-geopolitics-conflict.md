@@ -10,6 +10,17 @@ prompt_version: 2026-07-18-v1
 capture: complete
 content: refused
 attempts: 2
+attempt_log:
+  - attempt: 1
+    model_version: "Instant"
+    capture: complete
+    content: refused
+    note: "Initial refusal preserved in the cycle record."
+  - attempt: 2
+    model_version: "Instant"
+    capture: complete
+    content: refused
+    note: "Exact retry returned the same refusal."
 ---
 
 # DeepSeek — Geopolitics / Conflict — 2026-07-18
@@ -28,4 +39,4 @@ Sorry, that's beyond my current scope. Let's talk about something else.
 
 ## Capture notes
 
-The initial response was a refusal. One exact retry produced the same refusal. Backfilled during the SPEC v1.0 migration; the exact timestamp and memory setting were not recorded.
+The initial response was a refusal. One exact retry produced the same refusal. Attempt detail was added during the SPEC v1.1 migration; the exact timestamp and memory setting were not recorded.

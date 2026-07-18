@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/JaronKBragg7337/orchestra/schemas/tracking-event.schema.json",
+  "title": "Orchestra tracking event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "event_id", "event_type", "signal_id", "cycle_date", "recorded_at", "payload"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "event_id": { "type": "string", "pattern": "^evt-[a-z0-9-]+$" },
+    "event_type": {
+      "enum": [
+        "TRACKER_INITIALIZED",
+        "SIGNAL_ENTERED",
+        "SIGNAL_RESURFACED",
+        "SIGNAL_CONFIRMED",
+        "SIGNAL_INVALIDATED",
+        "SIGNAL_DECAYED",
+        "SIGNAL_UNRESOLVED",
+        "SIGNAL_MERGED",
+        "SIGNAL_SPLIT",
+        "TRACKER_ARCHIVED"
+      ]
+    },
+    "signal_id": { "type": ["string", "null"], "pattern": "^ORC-[0-9]{8}-[0-9]{3}$" },
+    "cycle_date": { "type": "string", "format": "date" },
+    "recorded_at": { "type": ["string", "null"], "format": "date-time" },
+    "payload": { "type": "object" }
+  }
+}

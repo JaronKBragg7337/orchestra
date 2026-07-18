@@ -2,6 +2,8 @@
 
 The raw corpus is organized by source and cycle date. Each daily file contains metadata, the exact prompt sent, the verbatim response, and mechanical capture notes.
 
+Final capture state and attempt state are distinct. `content: refused` means the final captured response declined the subject. `content: unavailable` means no usable response existed because of quota, capacity, rate limiting, or provider/account state. A multi-attempt sequence may contain unavailable attempts followed by a substantive or refused final capture; those events must not be collapsed.
+
 | Source | Differentiated reading | Standing prompts | Current prompt version | 2026-07-18 | Substantive |
 |---|---|---|---|---|---:|
 | Grok | Live social signal and practitioner activity | [prompts](grok/prompts.md) | `2026-07-18-v1` | [8 captures](grok/2026-07-18/) | 8/8 |

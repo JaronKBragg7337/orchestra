@@ -10,6 +10,17 @@ prompt_version: 2026-07-18-v1
 capture: complete
 content: substantive
 attempts: 2
+attempt_log:
+  - attempt: 1
+    model_version: unknown
+    capture: failed
+    content: unavailable
+    note: "Attempt collided with another active generation; no response was captured."
+  - attempt: 2
+    model_version: "Instant"
+    capture: complete
+    content: substantive
+    note: "Fresh-conversation retry produced the stored response."
 ---
 
 # DeepSeek — Major Companies / Business Intel — 2026-07-18
@@ -112,4 +123,4 @@ In a continued divestment trend, Dalian Wanda is seeking to sell five major deve
 
 ## Capture notes
 
-An initial attempt collided with another active generation. The prompt was retried in a fresh conversation and the captured response is substantive. The exact timestamp and memory setting were not recorded.
+An initial attempt was unavailable because it collided with another active generation. The prompt was retried in a fresh conversation and the captured response is substantive. Attempt detail was added during the SPEC v1.1 migration; the exact timestamp, first-attempt model version, and memory setting were not recorded.

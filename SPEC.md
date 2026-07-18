@@ -1,7 +1,9 @@
-# ORCHESTRA — ENGINE SPECIFICATION v1.0
+# ORCHESTRA — ENGINE SPECIFICATION v1.1
 
 **Jaron Kyler Bragg — July 2026**
 `github.com/JaronKBragg7337/orchestra` · Public archive · MIT License
+
+Consolidates v1.0 with [SPEC-ADDENDUM-v1.1.md](SPEC-ADDENDUM-v1.1.md), authored by Claude Opus 4.8 with Jaron Kyler Bragg. The verbatim addendum remains a separate versioned artifact; this file is the live operational specification.
 
 ---
 
@@ -9,11 +11,11 @@
 
 This is the governing specification for the Orchestra engine and the repository that holds it. It describes what the engine is, what it guarantees, how the archive is structured, and what gets built next.
 
-**Status tags:** `[BUILT]` running now · `[NEXT]` immediate build target · `[CORE]` structural, do not violate · `[DISCIPLINE]` procedural, not code-enforced, therefore fragile · `[OPEN]` genuinely undecided.
+**Status tags:** `[BUILT]` running now · `[PARTIAL]` some required mechanism exists · `[READY]` contract exists, first execution pending · `[NEXT]` immediate build target · `[CORE]` structural · `[DISCIPLINE]` procedural, not code-enforced · `[OPEN]` genuinely undecided · `[RESOLVED]` formerly open · `[SCHEDULED TO CHANGE]` true now with a declared migration.
 
 **Confidence tiers:** **Verified** — observed in operation · **Inferred** — follows from known structure · **Assumed** — plausible, untested, flagged.
 
-Part XI is the implementation brief: the concrete list of changes to apply to the repository.
+Part XI is the implementation status: what has been applied and what remains.
 
 ---
 
@@ -23,9 +25,9 @@ Part XI is the implementation brief: the concrete list of changes to apply to th
 
 Orchestra is a daily, high-volume, multi-source intelligence collection and convergence engine running on local hardware under human operation, publishing to a public archive.
 
-Each cycle it asks five independent AI systems a set of purpose-built questions across eight domains of the world, captures every answer verbatim without letting any source see another's, produces two independent syntheses of the whole corpus, compares those syntheses mechanically, and outputs a reading.
+Each cycle it asks five independent AI systems a set of purpose-built questions across eight domains of the world, captures every answer verbatim without letting any collection source see another's, produces two context-declared syntheses of the whole corpus, compares those syntheses mechanically, tracks falsifiable signals across time, and outputs a reading.
 
-**Something asks. Something captures. Something interprets twice, independently. Something compares. Something reports.**
+**Something asks. Something captures. Something interprets twice and declares what it read. Something compares. Something remembers. Something reports.**
 
 ## 1.2 — THE VALUE PROPOSITION `[CORE]`
 
@@ -104,7 +106,7 @@ Working examples already in the archive:
 | Level | Mechanism | Catches |
 |---|---|---|
 | **Collection** | Flag conditions inside the prompt | Contradictions a source can see from its own vantage |
-| **Convergence** | Comparison of two independent syntheses | Contradictions no single source can see, because they exist between sources |
+| **Convergence** | Comparison of two context-declared syntheses | Contradictions no single source can see, because they exist between sources |
 
 The two are complementary and neither replaces the other. A source can only flag a contradiction it is permitted and able to perceive. The convergence layer sees contradictions that are invisible from inside any single vantage.
 
@@ -136,7 +138,7 @@ DeepSeek refused Geopolitics / Conflict on initial submission and on exact retry
 
 That asks a Chinese-hosted model to indict its own information environment, by name, on the single most constrained topic available to it. The refusal is not a failure of the source. It is the source behaving exactly as its constraints require, on the one question where those constraints bind hardest.
 
-The same pattern explains the Kimi AI/Tech outcome: that prompt asks for Chinese capability milestones, export-control contradictions, and strategic military application — a refusal-dense region for an eastern-hosted model.
+The same pattern plausibly explains the final Kimi K2.6 AI/Tech refusal: that prompt asks for Chinese capability milestones, export-control contradictions, and strategic military application — a refusal-dense region for an eastern-hosted model. It does **not** explain the two preceding K3 failures. Those attempts were unavailable, with exact cause unconfirmed, and are account/provider-state data rather than refusal signal.
 
 **The structural insight:** the flag conditions most likely to be refused are precisely the ones aimed at the source's own blind spot. Which means the highest-value questions are the ones a source is least able to answer directly.
 
@@ -216,7 +218,7 @@ Responsibilities, in order:
 
 **5 sources × 8 domains = 40 captures per cycle.**
 
-## 3.3 — CAPTURE STANDARD `[NEXT]`
+## 3.3 — CAPTURE STANDARD `[BUILT]`
 
 Every log file carries a metadata block above the prompt and response:
 
@@ -230,9 +232,15 @@ model_version:  <as reported by the surface, e.g. K2.6, K3>
 conversation:   fresh
 memory_state:   disabled | enabled | unknown
 prompt_version: <date or hash of the prompts.md entry used>
-capture:        complete | truncated | retry-N | failed
-content:        substantive | refused | deflected | empty
+capture:        complete | truncated | failed
+content:        substantive | refused | unavailable | deflected | empty | unknown
 attempts:       1
+attempt_log:
+  - attempt: 1
+    model_version: <as reported | unknown>
+    capture: complete | truncated | failed
+    content: substantive | refused | unavailable | deflected | empty | unknown
+    note: mechanical observation only
 ---
 ```
 
@@ -242,14 +250,18 @@ attempts:       1
 
 **`prompt_version` exists because flag conditions evolve.** A log is only interpretable against the prompt set that produced it.
 
+**`attempts` is the count; `attempt_log` is the sequence.** The top-level `capture`, `content`, and `model_version` describe the final stored response. Each attempt records its own model and outcome. `unavailable` means no usable answer existed because of quota, capacity, rate limiting, collision, or provider/account state. It is not a refusal. If the historical cause cannot be established, the note says so rather than converting correlation into fact.
+
 ### 3.3.1 — COMPLETE IS NOT SUBSTANTIVE `[CORE]`
 
 Two independent checks, two independent fields.
 
 - **`capture`** answers *did the text arrive intact* — generation finished, nothing truncated, extraction clean.
-- **`content`** answers *did the source actually answer* — a refusal is a complete capture with no substance, and so is a deflection.
+- **`content`** answers *did the source actually answer* — a refusal is a complete capture with no substance, a deflection avoids the request, and unavailability means no answer was available at all.
 
 Collapsing these produces the worst available error: a cycle reporting 40/40 successful captures while synthesis treats polite non-answers as evidence.
+
+Collapsing `unavailable` into `refused` creates a different error: account usage patterns appear to be information-environment constraints. Refusal-boundary tracking therefore counts refused attempts and unavailable attempts separately.
 
 ### 3.3.2 — COMPLETENESS VERIFICATION `[NEXT]` `[CORE]`
 
@@ -276,89 +288,135 @@ An eastern source refusing on geopolitics while answering the other seven domain
 
 The archive already preserves refusals rather than hiding missing coverage. That decision is correct and is now specification. `[Verified]`
 
+### 3.3.4 — UNAVAILABLE AS OPERATING DATA `[BUILT]` `[CORE]`
+
+Quota exhaustion, capacity failure, rate limiting, active-generation collision, and provider failure describe the collection environment, not the requested subject. They are recorded as `content: unavailable` at attempt level.
+
+Unavailable attempts surface in CYCLE HEALTH and MONITORING. They do not enter evidence basis, SILENCE as a content refusal, or refusal-boundary statistics. If a later attempt succeeds, the top-level capture records that final result while every unavailable attempt remains in `attempt_log`.
+
 ## 3.4 — SYNTHESIS A `[NEXT]` `[CORE]`
 
-Claude, via Claude Code, reads the day's captures from disk and produces a structured synthesis.
+Claude produces the first structured synthesis using the shared prompt in `synthesis/PROMPT.md`.
 
-**Claude Code is required for this role.** Chat surfaces carry conversation history, project context, and persistent memory of the operator — prior projects, frameworks, conclusions. A synthesizer that already knows what the operator believes is not an independent reading of the world.
+The repository is public and its contents are available. The engine does not pretend to enforce ignorance of files a synthesizer can read. Claude may use captures, prompts, prior syntheses, the tracker, readings, or other context and declares what it used.
 
-**Filesystem contamination `[DISCIPLINE]` `[Inferred — high confidence]`:** Claude Code reads `CLAUDE.md` and project memory from the working directory and its parents. If synthesis runs inside a repo carrying a `CLAUDE.md` that describes the operator's philosophy, goals, or prior conclusions, the contamination closed by avoiding chat re-enters through the filesystem.
+## 3.5 — SYNTHESIS B AND CONTEXT DECLARATION `[NEXT]` `[CORE]`
 
-**Enforcement:** synthesis runs in a directory with either no `CLAUDE.md` or a minimal one containing synthesis instructions only — nothing about the operator, nothing about prior readings. Verify at the start of every cycle. This is the easiest rule here to break by accident.
+Codex produces the second structured synthesis using the same prompt, byte for byte. The second synthesizer is not a live collection source; it reads archived artifacts.
 
-## 3.5 — SYNTHESIS B `[NEXT]` `[CORE]`
+**Record, do not restrict.** Nothing in the public repository is hidden from either synthesizer. Every synthesis opens with:
 
-After Synthesis A is written and sealed, the harness produces its own independent synthesis over the same captures.
+```
+read_captures:          yes
+read_prior_synthesis:   yes | no        which one, if yes
+read_tracker:           yes | no
+read_prior_readings:    yes | no        how far back
+read_prompts:           yes | no
+other_context:          anything else consulted
+```
 
-**Ordering rule:** Synthesis B is written without Synthesis A in scope. Enforced at file-path level — A is written where the B step does not read, and the two meet only at comparison.
+The declaration is self-reported and preserved. The harness uses it to label comparison mode. It does not challenge the declaration or convert it into a permission system.
 
-**Why the second synthesizer is not also a collector:** a system that both reads the world and synthesizes the readings finds its own collection output persuasive, because it is the output it would have produced. It reinforces its own priors and calls the result convergence. The harness never touches a live source; it only reads captures. **The firewall is architectural, not procedural** — there is no discipline to maintain and nothing to check. `[Verified by construction]`
+**Default, not restriction:** both syntheses are normally produced before tracker matching so a re-surface can be classified as blind. A synthesizer may read the tracker or the other available synthesis; it records that choice. Whether informed reading improves or degrades results remains an empirical question answered by later confirmation and invalidation rates.
 
 ## 3.6 — SYNTHESIS ITEM FORMAT `[NEXT]`
 
 Both synthesizers emit items in the same shape so the harness can compare mechanically:
 
 ```
-domain:      one of the eight
-claim:       one sentence, falsifiable
-direction:   emerging | escalating | resolving | stable | reversing
-confidence:  Verified | Inferred | Assumed
-basis:       which captures support it (source + domain + date)
-falsifier:   what observation would make this wrong
-horizon:     when this should be visible if true
-flag_hit:    which prompt flag condition this satisfies, if any
+id:           short synthesis-local slug, lowercase and hyphenated
+domain:       01-08
+claim:        one sentence, falsifiable
+direction:    emerging | escalating | resolving | stable | reversing
+confidence:   Verified | Inferred | Assumed
+basis:        source + domain + date of every supporting capture
+specifics:    named entities
+falsifier:    what observation would make this wrong
+horizon:      when this should be visible if true
+hemisphere:   western | eastern | cross | eastern-split
+flag_hit:     which prompt flag condition this satisfies, if any
+serves:       financial | research | content | monitoring (one or more)
 ```
 
 **`falsifier` is mandatory.** An item without one is a mood, not a claim. The harness rejects it back to the synthesizer for rewrite.
 
-**`flag_hit`** links convergence-layer output back to the collection-layer hypotheses in §2.2, which is how the flag conditions get evaluated over time: a flag condition that never hits across many cycles is either wrong or badly worded, and that is worth knowing.
+**`flag_hit`** links synthesis output back to the collection-layer hypotheses in §2.2. **`specifics`** prevents sector-level claims that cannot be checked. **`hemisphere`** preserves perspective structure. **`serves`** lets multiple consumers use one synthesis without rewriting it.
+
+The synthesis-local `id` is not the longitudinal identifier. On tracker entry, the harness assigns an immutable `ORC-YYYYMMDD-NNN` signal ID. This prevents wording changes and slug collisions from corrupting history. The machine contract is `schemas/synthesis-item.schema.json`.
 
 ## 3.7 — CONVERGENCE `[NEXT]` `[CORE]`
 
-The harness compares Synthesis A and Synthesis B. Per item, one of four states:
+The harness compares Synthesis A and Synthesis B. Each item receives one of six context-aware states:
 
 | State | Meaning |
 |---|---|
-| **CONVERGENT** | Both readings reach the same conclusion at compatible confidence |
-| **DIVERGENT** | Both engaged the item, reached different conclusions |
-| **ASYMMETRIC** | One reading surfaced it, the other did not mention it at all |
-| **SUSPECT** | Both agree, but the agreement pattern trips an independence check (§4.6) |
+| **INDEPENDENT_CONVERGENT** | Neither read the other; both reached the same conclusion |
+| **INFORMED_CONVERGENT** | One read the other and agreed |
+| **INDEPENDENT_DIVERGENT** | Neither read the other; they disagree |
+| **INFORMED_DIVERGENT** | One read the other and still disagrees |
+| **ASYMMETRIC** | One surfaced the item; the other did not mention it |
+| **SUSPECT** | Agreement pattern trips an independence check (§4.6) |
 
-**Divergence is the highest-information output the engine produces.** Two independent readings of identical evidence reaching different conclusions means the evidence genuinely underdetermines the answer. That is a fact about the world, and a single-model pipeline erases it silently.
+**INDEPENDENT_CONVERGENT is the strongest agreement. INFORMED_DIVERGENT is the strongest disagreement.** A reader saw the opposing case and remained unmoved.
 
-**Asymmetric is the second most interesting** — something one synthesizer treated as central and the other did not notice at all is a live question about attention and framing, and often the earliest indicator available.
-
-**Neither is resolved by the harness. Neither is averaged. Neither is dropped for tidiness.** Consumers decide what to do with disagreement. The engine hands it over intact.
+Neither informed nor independent mode is assumed superior in general. Confirmation and invalidation history will show where each helps. Divergence is never resolved by the harness, averaged, or dropped for tidiness.
 
 ## 3.8 — THE READING `[NEXT]`
 
-Each cycle terminates in one human-readable document.
+Each cycle terminates in one human-readable document with nine sections.
 
-**1 — CONVERGENT.** Ranked. Each item: domain, claim, confidence, basis, falsifier, flag hit.
-**2 — DIVERGENT.** The question, reading A, reading B, what the disagreement hinges on. Verbatim, unresolved.
+**1 — CONVERGENT.** Ranked and mode-labeled. Each item: domain, claim, confidence, basis, falsifier, flag hit.
+**2 — DIVERGENT.** Independent or informed; reading A, reading B, and what the disagreement hinges on. Verbatim, unresolved.
 **3 — ASYMMETRIC.** What it was, which synthesizer raised it, plausible reason the other missed it.
-**4 — SILENCE.** Domains that produced nothing. Expected topics absent across all five sources. **Refusals, with source, domain, and model version.** Absence is signal; refusal is the loudest kind.
-**5 — CONTRADICTION.** Where sources contradicted each other at collection, with attribution. Includes collection-layer flag hits from §2.2.
-**6 — CROSS-DOMAIN CONNECTIONS.** Where two domains appear to describe the same underlying thing.
-**7 — FLAGS.** Independence checks tripped, failed captures, model-version changes, unavailable sources, anything degraded about this cycle.
+**4 — SILENCE.** Domains that produced nothing, expected topics absent, and refusals by source, domain, and model version.
+**5 — CONTRADICTION.** Source conflict at collection with attribution, including flag hits.
+**6 — CROSS-DOMAIN CONNECTIONS.** Developments linked across domains with the stated mechanism.
+**7 — FLAGS.** Independence checks, failed or unavailable attempts, model changes, degradation, and stagnation warnings.
+**8 — TRACKED SIGNAL MOVEMENT.** Re-surfaces by mode, blind streaks, hemisphere shifts, confirmations, invalidations, decays, and unresolved horizons.
+**9 — CYCLE HEALTH.** Capture and attempt counts, context declarations, convergence-mode counts, stagnation, hemisphere balance, Eastern-pair split, and version anomalies.
+
+## 3.9 — FOUR LEVELS OF CONVERGENCE `[CORE]`
+
+| Level | Name | Agreement between | Recorded in |
+|---|---|---|---|
+| Collection | **FLAG HIT** | The world and a pre-registered hypothesis | Capture and synthesis item |
+| Synthesis | **SOURCE CONVERGENCE** | Two or more collection sources | Each synthesis |
+| Reading | **SYNTHESIS CONVERGENCE** | The two synthesis outputs | Comparison |
+| Time | **RE-SURFACE** | A current item and a prior tracked signal | Tracker event |
+
+An item that hits a pre-registered flag, crosses sources and hemispheres, converges independently at synthesis, and re-surfaces blindly is the strongest pattern the engine can produce. The reading must not present it as equivalent to an informed agreement with no fresh basis.
+
+## 3.10 — STAGNATION AS MEASUREMENT `[NEXT]`
+
+The harness calculates rather than asks a synthesizer to self-diagnose staleness:
+
+```
+new_items:          items matching no tracked signal
+resurfaced:         items matching a tracked signal
+stagnation_rate:    resurfaced / total
+blind_stagnation:   same ratio where read_tracker was no
+silent_domains:     domains producing zero items
+```
+
+`SIGNAL_STAGNATION` enters FLAGS when the rate remains high across the configured consecutive-cycle window. The exact threshold remains an implementation variable and must be recorded when chosen.
 
 ---
 
 # PART IV — THE INDEPENDENCE MODEL
 
-The engine reports agreement between systems. If those systems were secretly reading each other, or reading the operator, the agreement is manufactured and the engine produces confident garbage. Confident garbage is worse than silence, because a consumer acts on it.
+The engine reports agreement between systems. Agreement reached without cross-reading and agreement reached after one reader saw the other are different findings. If the exposure is hidden, the label lies; if it is declared, the two modes can be measured against later outcomes.
 
-**Everything in this part exists so that convergence means something.**
+**Everything in this part exists so that convergence carries the conditions under which it occurred.**
 
-## 4.1 — VECTOR 1: SYNTHESIZER MEMORY OF THE OPERATOR
+## 4.1 — VECTOR 1: SYNTHESIZER CONTEXT OF THE OPERATOR
 
-*Closed by architecture.* Claude Code carries no chat history of the operator. The harness carries no chat memory. Both isolated by tool selection rather than discipline.
+*Measured by declaration, not presumed closed.* Tool choice, project files, prior readings, and other consulted context may carry operator framing. Each synthesizer records what it read in the §3.5 context block. The engine does not convert an unenforceable absence claim into false confidence.
 
-*Residual:* filesystem context per §3.4. Live. Check every cycle.
+The comparison and cycle-health artifacts preserve the declarations so later outcomes can be grouped by context exposure.
 
 ## 4.2 — VECTOR 2: SYNTHESIZER CROSS-READING
 
-*Closed by ordering.* Synthesis B is produced before Synthesis A is readable, enforced at file-path level per §3.5.
+*Measured, not prohibited.* If neither synthesis read the other, agreement or disagreement is labeled independent. If one read the other, it is labeled informed. The engine measures confirmation, invalidation, item count, specificity, and hedging by mode before adopting any future rule about which performs better.
 
 ## 4.3 — VECTOR 3: COLLECTOR MEMORY `[DISCIPLINE]` — THE OPEN ONE
 
@@ -380,6 +438,8 @@ Mitigations, strongest first:
 
 **Minimum standard: fresh conversation, every source, every domain, every cycle.** Memory settings audited monthly and recorded per capture in `memory_state`.
 
+**Account isolation is also capacity isolation.** On a shared account, unrelated projects consume the quota and provider capacity available to Orchestra. That leaves a fingerprint in what the engine can see on a given day even when memory is disabled. Availability failures therefore record account/provider state separately from content refusal, and a dedicated collection account remains the cleanest long-term measurement environment.
+
 ## 4.4 — VECTOR 4: UPSTREAM TRAINING OVERLAP
 
 *Cannot be closed. Can only be measured.* Five models trained on overlapping internet converge partly because they read the same things, not because the world is that way. Hemisphere weighting and silent-agreement detection exist to detect this. The corpus over time is the only real instrument for measuring it (§5.4).
@@ -398,7 +458,7 @@ Rules:
 - **Eastern sources matching western sources verbatim on a contested topic is a flag, not a confirmation.**
 - **Eastern-pair internal disagreement is distinct and valuable.** DeepSeek and Kimi answer identical prompts; where they diverge, the eastern vantage itself is not unitary — which is information no other configuration produces.
 
-**Stated plainly:** both synthesizers being western is a real limitation on perspective diversity at the synthesis layer, accepted in exchange for the architectural firewall in §3.5. Whether to add an eastern synthesis pass is open — §12.1. The tradeoff is not free.
+**Stated plainly:** both synthesizers being western is a real limitation on perspective diversity at the synthesis layer. Context declaration makes the condition visible but does not remove it. Whether to add an eastern synthesis pass is open — §12.1. The tradeoff is not free.
 
 ## 4.6 — SILENT AGREEMENT DETECTION `[NEXT]` `[CORE]`
 
@@ -413,6 +473,20 @@ Flag `SUSPECT` when:
 
 This is the engine's whole posture on rules — **surface and label; the consumer decides.** Blocking belongs to systems that take consequential action. The engine hands over a document.
 
+## 4.7 — FINANCIAL CONTEXT BOUNDARY `[CORE]` `[SCHEDULED TO CHANGE]`
+
+Today, holdings, balances, entries, exposure, and account state are outside this repository and absent from synthesis context. That separation is current fact, not a permanent architectural promise.
+
+[Part H of the v1.1 addendum](SPEC-ADDENDUM-v1.1.md#part-h--known-forward-contradiction) forward-declares a planned migration in which the financial layer becomes an internal directory and published view. At that boundary change:
+
+1. Add `read_account_state: yes | no` to every synthesis context declaration.
+2. Qualify comparison items by account-context exposure.
+3. Archive the tracker with `reason: structural change` before producing results under the new condition.
+4. Rewrite directory-level directionality without deleting the outcome-as-language rule.
+5. Keep credentials outside public artifacts and distinguish public account summaries from non-public account detail. A read-only key removes trade and withdrawal authority; it does not remove confidentiality or rotation cost if exposed.
+
+Until that migration is deliberately implemented and versioned, no financial state is an Orchestra engine artifact.
+
 ---
 
 # PART V — THE ARCHIVE
@@ -423,7 +497,9 @@ This is the engine's whole posture on rules — **surface and label; the consume
 orchestra/
 ├── README.md                        entry point, current archive status
 ├── LICENSE                          MIT
-├── SPEC.md                          this document
+├── SPEC.md                          consolidated live specification
+├── SPEC-ADDENDUM-v1.1.md            verbatim versioned addendum
+├── CHANGELOG.md                     material structure and spec history
 ├── logs/
 │   ├── README.md                    logs index — AI × date table
 │   ├── grok/
@@ -444,15 +520,28 @@ orchestra/
 ├── manifest/
 │   └── YYYY-MM-DD.md                per-cycle status: every capture, every failure
 ├── synthesis/
+│   ├── PROMPT.md                    byte-identical prompt for both synthesizers
 │   └── YYYY-MM-DD/
-│       ├── synthesis-a.md           Claude Code, sealed before B begins
-│       └── synthesis-b.md           harness, written with A out of scope
+│       ├── synthesis-a.md           Claude, with context declaration
+│       ├── synthesis-a.json         Claude context + machine ledger
+│       ├── synthesis-b.md           Codex, with context declaration
+│       └── synthesis-b.json         Codex context + machine ledger
 ├── convergence/
 │   └── YYYY-MM-DD/
 │       ├── comparison.json          machine-readable convergence states
 │       └── dissent.md               preserved disagreement, verbatim
+├── tracking/
+│   ├── signals.md                   human-readable current signal projection
+│   ├── events.jsonl                 append-only lifecycle event stream
+│   ├── cycles/YYYY-MM-DD.md         cycle context, health, and movement
+│   └── archive/YYYY-QN.md           immutable tracker rollovers
+├── schemas/
+│   ├── synthesis-item.schema.json
+│   ├── synthesis-output.schema.json
+│   ├── comparison.schema.json
+│   └── tracking-event.schema.json
 └── readings/
-    └── YYYY-MM-DD.md                the seven-section daily output
+    └── YYYY-MM-DD.md                the nine-section daily output
 ```
 
 **Numbered domain filenames** keep ordering stable across sources and dates, and make cross-source alignment for a given domain trivial — `05-*` is the same domain in every source's directory, forever, regardless of how domain labels are later worded.
@@ -472,6 +561,12 @@ prompt_version: 2026-07-18
 capture:        complete
 content:        refused
 attempts:       2
+attempt_log:
+  - attempt: 1
+    model_version: <as reported | unknown>
+    capture: complete | truncated | failed
+    content: substantive | refused | unavailable | deflected | empty | unknown
+    note: mechanical observation
 ---
 
 # DeepSeek — Geopolitics / Conflict — 2026-07-18
@@ -491,21 +586,24 @@ attempts:       2
 
 Capture notes record mechanics only. No judgment about content — that belongs to synthesis.
 
+The top-level result describes the final stored response. The attempt log preserves every known prior failure or response. Existing v1.0 captures with a single scalar `attempts` field remain valid; v1.1 requires `attempt_log` whenever `attempts` is greater than one and for all newly collected captures.
+
 ## 5.3 — ARCHIVE DISCIPLINE `[CORE]`
 
 1. **Nothing is deleted.** Failures, refusals, empties, and retries all persist.
-2. **Nothing is edited after commit.** Corrections are new files referencing the original.
+2. **Raw prompt and response blocks are immutable after commit.** Metadata may be corrected by adding explicit fields or notes in a new commit; the correction names its migration and Git preserves the earlier state. Never rewrite evidence to fit a later interpretation.
 3. **Prompts are versioned beside their logs.** A log without its exact prompt set is uninterpretable later.
 4. **Every cycle commits, including degraded ones.** Git history is the tamper-evident record; no separate immutability layer is needed.
 5. **The manifest reflects reality including failure.** A manifest recording only successes lies by omission.
 6. **Remote-first.** The corpus exists on GitHub before synthesis begins. The operator works primarily from a phone; a corpus that only exists on one machine is unavailable most of the time.
 7. **Public and MIT by design.** Legible to collaborators with no access-granting mechanism, citable, and independently verifiable — anyone can check that the reading follows from the logs.
+8. **Tracker state is projected, tracker history is append-only.** `signals.md` may change as a materialized view; `events.jsonl` only gains events.
 
 ## 5.4 — THE CORPUS AS INSTRUMENT `[CORE]`
 
 The daily reading is one product. **The corpus is the other, and over time it is the larger one.**
 
-Forty logs per day is roughly 1,200 a month and 14,600 a year — each timestamped, prompt-linked, source-attributed, version-stamped, never edited.
+Forty logs per day is roughly 1,200 a month and 14,600 a year — each timestamped, prompt-linked, source-attributed, version-stamped, with immutable evidence blocks and visible metadata revisions.
 
 Questions only the corpus can answer:
 
@@ -518,6 +616,34 @@ Questions only the corpus can answer:
 
 That last one matters most. **The corpus is the only instrument that can measure the engine's own core assumption.**
 
+## 5.5 — SIGNAL TRACKER AND EVENT LEDGER `[BUILT: SCAFFOLD]` `[CORE]`
+
+`tracking/signals.md` is the readable current state. `tracking/events.jsonl` is the append-only lifecycle history from which that state must be reproducible.
+
+A signal enters when comparison produces a convergent item in either context mode, a divergence worth following as its own finding, or a provisional asymmetric item. Entry assigns a stable `ORC-YYYYMMDD-NNN` identifier that never changes when the thesis wording changes.
+
+Lifecycle states:
+
+| State | Meaning |
+|---|---|
+| **ACTIVE** | Entered and inside its horizon |
+| **CONFIRMED** | The pre-declared confirmation observation occurred |
+| **INVALIDATED** | The pre-declared falsifier occurred; post-mortem required |
+| **DECAYED** | The corpus stopped producing the signal for the configured interval |
+| **UNRESOLVED** | Horizon passed without observable confirmation or falsification |
+
+`resurface_count`, `blind_resurfaces`, and `informed_resurfaces` measure persistence. They never set `status` by themselves. Persistence is not truth.
+
+- **Blind re-surface:** the synthesis that produced the current match declared `read_tracker: no`.
+- **Informed re-surface:** the producing synthesis declared `read_tracker: yes`.
+- **Blind streak:** consecutive cycles in which the signal re-surfaced without tracker exposure.
+
+Every synthesized cycle writes `tracking/cycles/YYYY-MM-DD.md` with capture and attempt counts, refusal and availability detail, both context declarations, state counts, new and re-surfaced items, stagnation, silent domains, hemisphere balance, Eastern-pair splits, flag hits, prompt versions, and model versions.
+
+Every entry, re-surface, resolution, merge, split, and archive operation appends an event validated against `schemas/tracking-event.schema.json`. `signals.md` is a materialized view. A future harness rebuilds the view from the event stream and fails validation if the committed projection differs.
+
+Collection-prompt changes, synthesis-prompt changes, quarterly rollover, and structural boundary changes archive the current tracker before new-mode results are mixed into it.
+
 ---
 
 # PART VI — CONSUMER INTERFACE
@@ -529,11 +655,16 @@ That last one matters most. **The corpus is the only instrument that can measure
 | Raw corpus | `logs/<source>/<date>/` | Every capture with metadata, prompt, and response |
 | Prompt sets | `logs/<source>/prompts.md` | Standing prompts, versioned |
 | Manifest | `manifest/<date>.md` | Per-capture status including every failure |
-| Synthesis A | `synthesis/<date>/synthesis-a.md` | First independent reading |
-| Synthesis B | `synthesis/<date>/synthesis-b.md` | Second independent reading |
-| Comparison | `convergence/<date>/comparison.json` | Machine-readable convergence states |
+| Synthesis prompt | `synthesis/PROMPT.md` | Byte-identical prompt used by both synthesizers |
+| Synthesis A | `synthesis/<date>/synthesis-a.md` + `.json` | Claude reading plus machine ledger and context |
+| Synthesis B | `synthesis/<date>/synthesis-b.md` + `.json` | Codex reading plus machine ledger and context |
+| Comparison | `convergence/<date>/comparison.json` | Context-aware convergence states |
 | Dissent | `convergence/<date>/dissent.md` | Preserved disagreement, verbatim |
-| Reading | `readings/<date>.md` | Seven-section human document |
+| Current signals | `tracking/signals.md` | Human-readable live signal projection |
+| Signal events | `tracking/events.jsonl` | Append-only lifecycle history |
+| Tracking cycle | `tracking/cycles/<date>.md` | Context, health, movement, and longitudinal measures |
+| Reading | `readings/<date>.md` | Nine-section human document |
+| Schemas | `schemas/` | Machine contracts shared by harness and website |
 
 **A consumer may take any subset.** A trading system might take the raw corpus and run its own synthesis under its own risk model, ignoring the engine's reading entirely. A content system might take only the reading. Both are correct uses.
 
@@ -541,19 +672,19 @@ That last one matters most. **The corpus is the only instrument that can measure
 
 Three promises to every consumer:
 
-1. **Provenance.** Every claim traces to specific captures, which trace to specific prompts, prompt versions, timestamps, and model versions.
-2. **Preserved disagreement.** Nothing is averaged, resolved, or dropped for tidiness. What the sources disagreed about arrives as disagreement.
-3. **Honest failure.** Refusals, truncations, unavailable sources, and tripped independence checks are reported, not hidden. A degraded cycle is labeled degraded.
+1. **Provenance.** Every claim traces through stable IDs to captures, prompts, model versions, context declarations, comparison state, and lifecycle events.
+2. **Preserved disagreement.** Nothing is averaged, resolved, or dropped for tidiness. Independent and informed disagreement arrive as different labeled findings.
+3. **Honest failure.** Refusals, unavailable attempts, truncations, unresolved signals, and tripped independence checks are reported, not hidden. A degraded cycle is labeled degraded.
 
 **What the engine does not promise:** that any reading is correct. It promises the reading is an honest function of what the sources actually said.
 
 ## 6.3 — DIRECTIONALITY `[CORE]`
 
-**Artifacts flow outward only.** No consumer writes into `logs/`, `synthesis/`, `convergence/`, or `manifest/`. No consumer's output re-enters collection or synthesis as input.
+**Raw acquisition flows outward only.** No consumer writes into `logs/` or rewrites a manifest. Synthesis and tracking may read prior public artifacts; that context is declared and labeled rather than hidden.
 
-A trading system's positions must never influence what the engine reads or how it synthesizes. The moment consumer state feeds back into the engine, the engine stops reading the world and starts reading the consumer, and every system built on it inherits that distortion silently.
+Today, consumers write outside this repository and financial state does not enter synthesis. Part H of the v1.1 addendum schedules a future internal financial directory. At that migration, directionality becomes a rule between directories: raw acquisition remains immutable, account-context exposure becomes declared, and realized outcomes return to the engine as attributed post-mortem language rather than an invisible numeric weight.
 
-Consumers write to their own repositories. Absolute.
+The principle that survives every layout is explicit flow. No artifact silently becomes input to a stage that does not record having read it.
 
 ---
 
@@ -563,17 +694,20 @@ Consumers write to their own repositories. Absolute.
 2. **No AI in the pipeline calls another AI.** All routing goes through the harness.
 3. **One prompt, one domain, one fresh conversation.** Never batched, never continued.
 4. **Raw captures are immutable.** Failures are captured, not deleted.
-5. **Synthesis B is written before Synthesis A is readable.** File-path enforced.
-6. **Synthesis A runs through Claude Code in a directory with no operator context.**
-7. **`capture` and `content` are checked separately.** Refusals are captured as refusals.
+5. **Both synthesizers receive the same prompt byte for byte.** Version changes affect both in one commit.
+6. **Each synthesis declares what it read.** Context is recorded, not hidden or presumed absent.
+7. **`capture`, final `content`, and attempt outcomes are checked separately.** Unavailability is not refusal.
 8. **Refusals are never rephrased into compliance within a cycle.**
-9. **Prompt sets are versioned, never silently overwritten.**
-10. **Source differentiation is preserved.** Edits that make two sources more similar are almost always wrong.
+9. **Prompt sets and specifications are versioned, never silently overwritten.**
+10. **Source differentiation is preserved.** Edits that make collection sources more similar are almost always wrong.
 11. **Disagreement is preserved verbatim.** Never averaged, never resolved by the harness.
-12. **Artifacts flow outward only.** No consumer output re-enters the engine.
-13. **Nothing operator-private enters a prompt.** The archive is public.
-14. **Every cycle commits, including degraded ones.**
-15. **The engine reports when it was wrong.**
+12. **Cross-cycle reading is permitted and declared.** Tracker matching defaults to after synthesis, but access is not fenced.
+13. **Persistence and confirmation remain separate.** Re-surfacing alone never confirms a signal.
+14. **Signal lifecycle is append-only.** `signals.md` must be reproducible from `events.jsonl`.
+15. **Artifact flow is explicit.** No stage silently consumes another stage's output.
+16. **Nothing operator-private enters a collection prompt.** The archive is public.
+17. **Every cycle commits, including degraded ones.**
+18. **The engine reports when it was wrong.**
 
 ## 7.1 — POST-MORTEM
 
@@ -617,16 +751,16 @@ First full collection, 2026-07-18. `[Verified]`
 | Perplexity | 8/8 | 8 | Clean |
 | Gemini | 8/8 | 8 | Clean |
 | DeepSeek | 8/8 | 7 | Geopolitics refused on submission and exact retry |
-| Kimi | 8/8 | 7 | AI/Tech failed twice on K3, then refused by K2.6 |
+| Kimi | 8/8 | 7 | AI/Tech had two unavailable K3 attempts, then a K2.6 refusal |
 | **Total** | **40** | **38** | Zero empty files |
 
 **Findings**
 
-1. **Eastern collection costs ~2.6× the wall clock of western per capture.** Retries, refusals, and sign-in friction concentrate on the eastern side. Sources are not interchangeable in scheduling.
+1. **Eastern collection costs ~2.6× the wall clock of western per capture.** Retries, unavailable attempts, refusals, and sign-in friction concentrate on the eastern side. Sources are not interchangeable in scheduling.
 
-2. **Refusals are prompt-predictable, not source-random.** Both refusals landed on flag conditions asking an eastern-hosted model to indict its own information environment. §2.4 specifies the fix.
+2. **Final refusals are prompt-predictable, not source-random.** The two refused final captures landed on flag conditions asking an eastern-hosted model to indict its own information environment. §2.4 specifies the fix. Unavailable attempts are excluded from this claim.
 
-3. **A single named source is not a single model.** Kimi K3 failed twice; K2.6 then refused — two models, two behaviors, one cycle. `model_version` exists because of this.
+3. **A single named source is not a single model.** Kimi K3 was unavailable twice; K2.6 then refused — two model paths, two outcome classes, one cycle. `model_version` and `attempt_log` exist because of this.
 
 4. **Session interruption is routine and has a clean handling pattern.** DeepSeek blocked at sign-in mid-cycle. The correct and observed response: pause, leave the login surface open, report the block, wait for the human to authenticate, resume on command. **Never automate around an authentication challenge.** The cycle completed after handoff.
 
@@ -641,12 +775,13 @@ First full collection, 2026-07-18. `[Verified]`
 | Session expired / logged out | High `[Verified]` | Capture returns login surface | Pause, leave surface open, report, wait for human, resume on command |
 | CAPTCHA or bot challenge | Moderate | Capture returns challenge | Pause, hand to human. Never automate around it |
 | Source refuses a domain | High `[Verified]` | `content` classifier | Capture verbatim, log to SILENCE, redesign prompt between cycles per §2.4 |
+| Provider/account unavailable | High `[Verified]` | Quota, capacity, collision, rate-limit, or failed generation | Record the attempt as `content: unavailable`; do not count it as refusal |
 | Model version changed mid-cycle | Observed `[Verified]` | `model_version` mismatch | Log both, flag, do not merge as one source-read |
 | Silent truncation | High, quiet | §3.3.2 three checks | Retry, keep both files |
 | Streaming captured mid-generation | High | Wait-for-idle | Confirm completion, not presence |
 | UI redesign breaks extraction | Moderate, recurring | Garbled or empty captures | Adapter fix only. Convergence untouched (§1.3) |
 | Memory setting silently re-enabled | Moderate | Monthly audit | Re-disable, flag affected cycles |
-| Rate limit mid-cycle | Moderate | Limit notice in capture | Partial cycle, logged as partial. Never fabricate the gap |
+| Rate limit mid-cycle | Moderate | Limit notice in capture | Record unavailable attempt; retry only within the cycle policy; never fabricate the gap |
 
 **On automating logged-in interfaces `[Assumed]`:** consumer AI surfaces change without notice and their terms around automation vary. The operational risk is breakage and lockout rather than enforcement. The three-layer seam exists precisely so that when a surface changes, only the adapter changes.
 
@@ -657,25 +792,34 @@ First full collection, 2026-07-18. `[Verified]`
 **Pre-cycle**
 1. Verify all five sources reachable and authenticated.
 2. Verify memory/personalization settings per source; record state.
-3. Verify the synthesis directory carries no operator context.
+3. Record collection-prompt and synthesis-prompt versions; note account quota or provider availability visible before collection.
 4. Create dated directories. Open the cycle manifest entry.
 
 **Collection**
-5. Per source, per domain: fresh conversation → send prompt → wait for idle → verify complete → classify content → write log with metadata, prompt, and response.
-6. Log every failure, refusal, retry, and version anomaly to the manifest.
+5. Per source, per domain: fresh conversation → send prompt → wait for idle → verify complete → classify final content and every attempt → write log with metadata, prompt, and response.
+6. Log every failure, unavailable attempt, refusal, retry, and version anomaly to the manifest.
 7. Commit and push. **The corpus exists remotely before synthesis begins.**
 
 **Synthesis**
-8. Invoke Claude Code over the day's captures. Write Synthesis A. Seal.
-9. Harness produces Synthesis B over the same captures, A out of scope.
+8. Give Claude `synthesis/PROMPT.md` verbatim. Write Synthesis A with its context declaration and validate the item ledger.
+9. Give Codex the same prompt byte for byte. Write Synthesis B with its context declaration and validate the item ledger.
 
 **Convergence**
-10. Compare. Write `comparison.json`.
+10. Compare using the declared context modes. Write schema-valid `comparison.json`.
 11. Preserve all disagreement verbatim to `dissent.md`.
 12. Run hemisphere weighting and silent-agreement checks.
 
+**Tracking**
+12a. Read and record both context declarations; they determine independent or informed labels.
+12b. Match each comparison item against stable tracked signal IDs.
+12c. Update re-surface counts, blind/informed split, basis history, blind streak, and confidence.
+12d. Test each confirmation and falsifier; mark CONFIRMED, INVALIDATED, DECAYED, or UNRESOLVED only when its rule fires.
+12e. Enter qualifying new items and assign immutable `ORC-YYYYMMDD-NNN` identifiers.
+12f. Compute stagnation, hemisphere balance, Eastern split, mode counts, and silent domains. Write the tracking cycle note.
+12g. Append every movement to `tracking/events.jsonl`, rebuild `tracking/signals.md`, and trigger post-mortems for invalidations.
+
 **Output**
-13. Write the reading in the seven-section format.
+13. Write the reading in the nine-section format.
 14. Update the logs index and manifest. Commit, push, drop to the routing folder.
 
 **Post-cycle**
@@ -684,39 +828,40 @@ First full collection, 2026-07-18. `[Verified]`
 
 ---
 
-# PART XI — CHANGES TO APPLY
+# PART XI — IMPLEMENTATION STATUS
 
-Implementation brief. Ordered by value.
+## 11.1 — APPLIED FROM v1.0
 
-**1. Prompt redesign for refused domains — highest priority.**
-Rewrite DeepSeek and Kimi Geopolitics / Conflict and AI / Tech Breakthroughs flag conditions per §2.4: characterize the eastern vantage in full specificity, remove clauses asking the source to adjudicate its own environment against Western fact. Version the change in `prompts.md` with a dated entry. Do not delete the prior version. Test next cycle — the domains should return substantive.
+- Eastern refusal-recovery prompts versioned as `2026-07-18-v2`; v1 retained.
+- Capture metadata backfilled with unknowns labeled rather than guessed.
+- `capture` and final `content` split.
+- Stable numbered domain filenames applied across all five sources.
+- Cycle manifest and synthesis/convergence/readings scaffolding created.
+- Public `SPEC.md`, README architecture, consumer contract, and per-cycle Git history established.
 
-**2. Capture metadata block.**
-Add the §3.3 frontmatter to the log template. Backfill what is knowable for 2026-07-18; mark unknowable fields `unknown` rather than guessing.
+## 11.2 — APPLIED FROM v1.1
 
-**3. Split `capture` from `content`.**
-Two fields, two checks. The 2026-07-18 cycle is 40 complete captures, 38 substantive — record it that way.
+- Verbatim addendum committed and consolidated into this live specification.
+- Shared byte-identical synthesis prompt v1.0 created.
+- Context declaration replaces enforced synthesis ignorance.
+- Six comparison states distinguish independent and informed modes.
+- Synthesis ledger expanded with specifics, hemisphere, consumer tags, and stable tracker handoff.
+- Tracker, cycle notes, archive, and nine-section reading structures created.
+- `unavailable` split from `refused`; known multi-attempt exceptions backfilled without changing raw prompts or responses.
+- Forward financial contradiction made visible in the addendum, live spec, and README.
+- Stable global signal IDs, append-only lifecycle events, and JSON Schemas added as v1.1 implementation extensions.
 
-**4. Completeness verification.**
-Implement wait-for-idle, terminator check, and length heuristic per §3.3.2 before writing `capture: complete`.
+## 11.3 — NEXT EXECUTION WORK
 
-**5. Numbered domain filenames.**
-`01-crypto.md` through `08-supply-chain.md`, identical across every source directory. Rename existing files.
+1. Implement automated wait-for-idle, terminator, and source × domain length-median checks before new captures receive `capture: complete`.
+2. Run the first Claude and Codex syntheses with `synthesis/PROMPT.md` and preserve both context declarations.
+3. Implement the comparison matcher once; reuse it for synthesis comparison and tracker matching.
+4. Validate structured items against `schemas/`, write comparison and dissent, then initialize the first real tracked signals.
+5. Generate the first nine-section reading and tracker cycle note.
+6. Replay `tracking/events.jsonl` into `tracking/signals.md` and treat any mismatch as a harness failure.
+7. Test the redesigned Eastern prompts in the next collection cycle.
 
-**6. Manifest directory.**
-`manifest/YYYY-MM-DD.md` — per-capture status including every failure, retry, refusal, and version anomaly. The existing logs index stays as the navigation surface; the manifest is the status record.
-
-**7. Directory scaffolding.**
-Create `synthesis/`, `convergence/`, `readings/` with README stubs explaining what will live there.
-
-**8. `SPEC.md`.**
-This document, committed at the repo root, linked from `README.md`.
-
-**9. README update.**
-Add: what the engine is, the three layers, the consumer contract, and a pointer to `SPEC.md`. Keep the current-archive status block and update it per cycle.
-
-**10. Per-cycle commits.**
-Going forward, each cycle commits on completion rather than batching.
+Per-cycle commits remain mandatory. A degraded cycle commits as degraded rather than waiting for a clean narrative.
 
 ---
 
@@ -728,7 +873,7 @@ Going forward, each cycle commits on completion rather than batching.
 
 **12.3 — Prompt stability versus memory defense.** Identical prompts every cycle make the corpus a real longitudinal instrument (§5.4). Rotating wording defends against collector memory (§4.3). These pull directly against each other and both matter. Current lean: hold prompts stable, defend memory through fresh conversations and account settings, and treat any prompt change as a versioned event.
 
-**12.4 — Cross-cycle synthesis.** Whether a synthesizer should ever read prior cycles. Enables trend detection; re-opens operator contamination through the archive, since prior readings encode prior conclusions.
+**12.4 — Cross-cycle synthesis. `[RESOLVED v1.1]`** A synthesizer may read prior captures, syntheses, readings, prompts, and the tracker. It declares what it read. The default keeps tracker matching after both syntheses because blind re-surface counts are cleaner, but access is not fenced. Outcome history will determine whether informed and independent modes perform differently.
 
 **12.5 — Flag condition evaluation.** How often to review which flag conditions actually hit. A condition that never fires across many cycles is either wrong or badly worded — but distinguishing "wrong" from "the thing genuinely isn't happening yet" requires judgment.
 
@@ -744,17 +889,19 @@ Going forward, each cycle commits on completion rather than batching.
 
 **Stage 1 — Collection.** `[BUILT]` Five sources, eight domains, forty captures, public archive, prompts versioned beside logs.
 
-**Stage 2 — Capture hardening.** `[NEXT]` Items 1–6 of Part XI. Prompt redesign first, since it should recover two refused domains immediately.
+**Stage 2 — Capture hardening.** `[PARTIAL]` Metadata, attempt classification, stable filenames, and prompt redesign are built. Automated completeness verification remains next.
 
-**Stage 3 — Synthesis A.** Claude Code over the day's captures in a context-clean directory. Verify no `CLAUDE.md` leakage by testing it adversarially, not by assuming.
+**Stage 3 — Dual synthesis.** `[READY]` Give Claude and Codex the same `synthesis/PROMPT.md`. Preserve their context declarations and schema-valid item ledgers.
 
-**Stage 4 — Synthesis B.** Harness synthesis with A out of scope. **Verify the ordering firewall by attacking it.**
+**Stage 4 — Comparison.** `[NEXT]` Implement §12.2 once, emit six context-aware states, and preserve dissent verbatim.
 
-**Stage 5 — Comparison and reading.** Four convergence states, dissent preservation, seven-section output. Resolve §12.2 here.
+**Stage 5 — Tracking and reading.** Match stable signal IDs, append lifecycle events, rebuild the tracker projection, and write the nine-section reading.
 
 **Stage 6 — Daily operation.** Run it repeatedly. Let post-mortems teach the engine what this document got wrong.
 
-**Stage 7 — First consumer.** Attach one downstream system at the consumption seam. Confirm it never needs to reach backward into the engine. If it does, extend the artifact set in §6.1 rather than breaking the seam.
+**Stage 7 — Public website.** Generate synthesis, signal history, research, financial, evidence, dissent, and cycle-health views from the structured public artifacts without creating a second source of truth.
+
+**Stage 8 — First stateful consumer.** Attach one downstream system through explicit artifact flow. If it needs an artifact the engine does not expose, extend §6.1 and version the contract rather than creating a hidden dependency.
 
 ---
 
@@ -762,11 +909,11 @@ Going forward, each cycle commits on completion rather than batching.
 
 The engine reads the world at a volume no single conversation reaches, and keeps those readings honest enough that other systems can be built on them.
 
-Everything structural serves one requirement: **the five readings must be genuinely independent.** Differentiated prompts, fresh conversations, tool-level context isolation, ordered synthesis, hemisphere weighting, silent-agreement detection — all of it protects the same thing. Convergence between systems that were reading each other is not information, and a consumer acting on it inherits a distortion it cannot see.
+Everything structural serves one requirement: **the conditions behind every reading must remain visible.** The five collection readings stay differentiated and isolated. The two syntheses may be independent or informed, but their context is declared and their outcomes are measured separately. Influence that is labeled is a finding; influence that is hidden is a distortion.
 
 The prompts are the instrument. The flag conditions are standing hypotheses about what matters, and the ones a source refuses are the ones aimed at its own blind spot — which makes them the most valuable questions in the set and the ones that must be asked from the right layer.
 
-The corpus outlasts every individual reading. Forty logs a day, never edited, never deleted, prompt-linked and version-stamped, is the instrument that eventually measures whether the engine's core assumption still holds.
+The corpus outlasts every individual reading. Forty logs a day, prompt-linked and version-stamped, create the evidence base. Stable signal IDs and append-only lifecycle events turn that evidence into a replayable instrument that can report when it was right, wrong, stale, or unresolved.
 
 The convergence layer does not know what a browser is. Keep it that way and the acquisition layer can change as many times as it needs to.
 
@@ -774,12 +921,12 @@ Disagreement is information.
 
 Absence is signal. Refusal is the loudest kind.
 
-Independence is the thing being protected.
+Declared context is the thing that makes independence measurable.
 
-Artifacts flow outward only.
+Artifact flow is explicit.
 
 ---
 
-*Orchestra Engine Specification v1.0*
+*Orchestra Engine Specification v1.1*
 *Jaron Kyler Bragg — July 2026*
 *Public archive · MIT License*
