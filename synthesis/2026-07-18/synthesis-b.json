@@ -1,0 +1,446 @@
+{
+  "schema_version": "1.0",
+  "cycle_date": "2026-07-18",
+  "synthesizer": "codex",
+  "prompt_version": "1.0",
+  "context": {
+    "read_captures": true,
+    "read_prior_synthesis": null,
+    "read_tracker": false,
+    "read_prior_readings": null,
+    "read_prompts": true,
+    "other_context": "Consulted synthesis/PROMPT.md, schemas/synthesis-output.schema.json, schemas/synthesis-item.schema.json, manifest/2026-07-18.md, the dated capture-file inventory, and git status. Synthesis A existed on GitHub but was not present in the stale local checkout during synthesis and was not read; it was fetched only afterward for publication."
+  },
+  "items": [
+    {
+      "id": "ai-compute-power-pivot",
+      "domain": "04",
+      "claim": "AI compute demand is moving from a technology-sector capex story into explicit grid, transmission, and advanced-reactor policy and deployment decisions.",
+      "direction": "escalating",
+      "confidence": "Verified",
+      "basis": [
+        "logs/gemini/2026-07-18/03-ai-tech.md",
+        "logs/gemini/2026-07-18/04-energy-science.md",
+        "logs/perplexity/2026-07-18/04-energy-science.md"
+      ],
+      "specifics": [
+        "Federal Energy Regulatory Commission Docket RD26-7-000",
+        "U.S. Department of Energy 2026 National Transmission Needs Study",
+        "Aalo Atomics Aalo-X",
+        "Deployable Energy Unity",
+        "Alphabet"
+      ],
+      "falsifier": "FERC and DOE remove computational-load language from final actions, transmission priorities do not shift toward compute clusters, and announced reactor projects cease tying deployment to data-center demand.",
+      "horizon": "7-30 days for regulatory and procurement follow-through; 1-3 years for physical deployment",
+      "hemisphere": "western",
+      "flag_hit": "Government funding and policy are quietly moving toward AI power infrastructure, while major tech financial data diverges from the public AI-investment narrative.",
+      "serves": [
+        "financial",
+        "research",
+        "content"
+      ]
+    },
+    {
+      "id": "kimi-k3-open-weight-pressure",
+      "domain": "03",
+      "claim": "Moonshot AI's Kimi K3 release is increasing price and margin pressure on Western frontier-model providers while challenging their lead on coding benchmarks.",
+      "direction": "emerging",
+      "confidence": "Verified",
+      "basis": [
+        "logs/deepseek/2026-07-18/03-ai-tech.md",
+        "logs/gemini/2026-07-18/03-ai-tech.md",
+        "logs/grok/2026-07-18/03-ai-tech.md",
+        "logs/perplexity/2026-07-18/03-ai-tech.md"
+      ],
+      "specifics": [
+        "Moonshot AI",
+        "Kimi K3",
+        "OpenAI GPT-5.6",
+        "Anthropic Claude Fable 5",
+        "Hugging Face"
+      ],
+      "falsifier": "Independent benchmark replications place Kimi K3 materially below the named Western models, its promised open weights do not ship, and API prices among frontier providers do not respond.",
+      "horizon": "7-14 days",
+      "hemisphere": "cross",
+      "flag_hit": "A non-Western AI model is outperforming Western models on reported benchmarks, and unrelated labs are converging on open-weight efficiency architectures.",
+      "serves": [
+        "financial",
+        "research",
+        "content"
+      ]
+    },
+    {
+      "id": "china-ai-governance-stack",
+      "domain": "03",
+      "claim": "China is pairing frontier-model and domestic-compute releases with international AI governance initiatives to compete on standards as well as capability.",
+      "direction": "emerging",
+      "confidence": "Verified",
+      "basis": [
+        "logs/deepseek/2026-07-18/03-ai-tech.md",
+        "logs/perplexity/2026-07-18/03-ai-tech.md"
+      ],
+      "specifics": [
+        "World Artificial Intelligence Conference",
+        "World Artificial Intelligence Cooperation Organization",
+        "China Ministry of Industry and Information Technology",
+        "National Development and Reform Commission",
+        "Huawei Atlas 950 SuperPoD"
+      ],
+      "falsifier": "The announced international body and action plans fail to gain operating members, programs, standards adoption, or follow-on implementation outside China.",
+      "horizon": "14-30 days for organizational follow-through; 6-18 months for standards uptake",
+      "hemisphere": "cross",
+      "flag_hit": "Government bodies are quietly moving on AI regulation and Chinese government AI investment suggests strategic economic application.",
+      "serves": [
+        "research",
+        "content"
+      ]
+    },
+    {
+      "id": "gulf-conflict-logistics-inflation",
+      "domain": "05",
+      "claim": "Renewed U.S.-Iran hostilities are transmitting through oil, LNG, port operations, freight risk pricing, and near-term inflation expectations rather than remaining a contained military event.",
+      "direction": "escalating",
+      "confidence": "Verified",
+      "basis": [
+        "logs/deepseek/2026-07-18/02-stocks-markets.md",
+        "logs/gemini/2026-07-18/02-stocks-markets.md",
+        "logs/gemini/2026-07-18/05-geopolitics-conflict.md",
+        "logs/grok/2026-07-18/05-geopolitics-conflict.md",
+        "logs/kimi/2026-07-18/05-geopolitics-conflict.md",
+        "logs/perplexity/2026-07-18/05-geopolitics-conflict.md",
+        "logs/perplexity/2026-07-18/08-supply-chain.md"
+      ],
+      "specifics": [
+        "Strait of Hormuz",
+        "Shuaiba Port",
+        "Japan-Korea Marker",
+        "Brent crude",
+        "West Texas Intermediate",
+        "Kuwait",
+        "Jordan",
+        "Bahrain"
+      ],
+      "falsifier": "A durable ceasefire restores normal Gulf port and tanker operations, war-risk and bunker surcharges reverse, and oil and Asian LNG benchmarks return to pre-escalation ranges.",
+      "horizon": "7 days for shipping and commodity confirmation; 14-30 days for inflation pass-through",
+      "hemisphere": "cross",
+      "flag_hit": "Commodity prices and logistics movements are consistent with foreknowledge or expectation of geopolitical escalation, and port rerouting is appearing across locations.",
+      "serves": [
+        "financial",
+        "research",
+        "content"
+      ]
+    },
+    {
+      "id": "aktau-middle-corridor",
+      "domain": "08",
+      "claim": "The Aktau Container Hub and its integrated China-Kazakhstan terminal network are turning the Middle Corridor into an operational alternative to Suez- and Russia-dependent Eurasian routes.",
+      "direction": "emerging",
+      "confidence": "Verified",
+      "basis": [
+        "logs/deepseek/2026-07-18/06-companies-business.md",
+        "logs/deepseek/2026-07-18/07-demographics-culture.md",
+        "logs/deepseek/2026-07-18/08-supply-chain.md",
+        "logs/kimi/2026-07-18/08-supply-chain.md"
+      ],
+      "specifics": [
+        "Aktau Container Hub",
+        "Trans-Caspian International Transport Route",
+        "Lianyungang Port Holding Group",
+        "Kazakhstan Railways",
+        "China Railway Container Transport",
+        "COSCO Shipping Container Lines",
+        "Khorgos-Eastern Gate"
+      ],
+      "falsifier": "The hub fails to sustain scheduled throughput, border and Caspian transfers keep end-to-end transit uncompetitive, or the integration agreement does not produce shared operations across the three named hubs.",
+      "horizon": "30-90 days for repeat throughput and schedule reliability",
+      "hemisphere": "eastern",
+      "flag_hit": "Belt and Road port and rail infrastructure is creating a strategic alternative to Western-controlled shipping lanes and traditional chokepoints.",
+      "serves": [
+        "financial",
+        "research",
+        "content"
+      ]
+    },
+    {
+      "id": "sovereign-digital-payment-rails",
+      "domain": "01",
+      "claim": "Asian and BRICS payment policy is moving toward bank- and central-bank-controlled interoperable digital rails rather than the issuer-led stablecoin model dominant in U.S. debate.",
+      "direction": "emerging",
+      "confidence": "Verified",
+      "basis": [
+        "logs/deepseek/2026-07-18/01-crypto.md",
+        "logs/kimi/2026-07-18/01-crypto.md",
+        "logs/kimi/2026-07-18/06-companies-business.md"
+      ],
+      "specifics": [
+        "People's Bank of China",
+        "e-CNY",
+        "mBridge",
+        "BRICS Pay",
+        "Reserve Bank of India",
+        "Hong Kong Monetary Authority",
+        "Bank of China",
+        "UAE Jaywan"
+      ],
+      "falsifier": "The reported September launches or linkages are delayed without replacement dates, cross-border transaction volumes stall, and participating central banks revert to non-interoperable domestic pilots.",
+      "horizon": "14-30 days for launch preparation; by September 2026 for named rollout milestones",
+      "hemisphere": "eastern",
+      "flag_hit": "The digital yuan or mBridge is expanding while Western attention is on crypto markets, Hong Kong is serving as a policy test bed, and BRICS nations are coordinating payment infrastructure outside SWIFT.",
+      "serves": [
+        "financial",
+        "research",
+        "content"
+      ]
+    },
+    {
+      "id": "china-macro-record-conflict",
+      "domain": "02",
+      "claim": "The Eastern capture set contains irreconcilable China growth and same-day Hang Seng figures, so it does not support a single quantitative conclusion about current Chinese growth or market direction.",
+      "direction": "stable",
+      "confidence": "Verified",
+      "basis": [
+        "logs/deepseek/2026-07-18/02-stocks-markets.md",
+        "logs/kimi/2026-07-18/02-stocks-markets.md"
+      ],
+      "specifics": [
+        "National Bureau of Statistics of China",
+        "Hang Seng Index",
+        "Shanghai Composite",
+        "KOSPI",
+        "Nikkei 225"
+      ],
+      "falsifier": "The underlying releases and exchange closes reconcile the quoted figures as different, correctly labeled periods or sessions with no remaining conflict.",
+      "horizon": "Immediate; resolvable against authoritative releases and exchange closes",
+      "hemisphere": "eastern-split",
+      "flag_hit": "Chinese economic data and Asian market movements were requested as divergence flags, but the two Eastern answers themselves diverge.",
+      "serves": [
+        "research",
+        "monitoring"
+      ]
+    },
+    {
+      "id": "eastern-collection-friction",
+      "domain": "03",
+      "claim": "Eastern collection degraded selectively: Kimi K3 produced two unavailable AI attempts before K2.6 refused, DeepSeek refused geopolitics twice, and isolated Kimi stocks and DeepSeek companies attempts were unavailable before successful retries.",
+      "direction": "stable",
+      "confidence": "Verified",
+      "basis": [
+        "logs/deepseek/2026-07-18/05-geopolitics-conflict.md",
+        "logs/deepseek/2026-07-18/06-companies-business.md",
+        "logs/kimi/2026-07-18/02-stocks-markets.md",
+        "logs/kimi/2026-07-18/03-ai-tech.md"
+      ],
+      "specifics": [
+        "DeepSeek Instant",
+        "Kimi K3 variant unknown",
+        "Kimi K2.6",
+        "AI / Tech Breakthroughs",
+        "Geopolitics / Conflict"
+      ],
+      "falsifier": "A repeat collection with the same prompts and model versions completes substantively without retries or refusals across the affected domains.",
+      "horizon": "Next collection cycle",
+      "hemisphere": "eastern-split",
+      "flag_hit": null,
+      "serves": [
+        "research",
+        "monitoring"
+      ]
+    },
+    {
+      "id": "insider-buying-silence",
+      "domain": "02",
+      "claim": "No Western markets capture substantiated unusual insider buying in the collection window despite prompts designed to surface insider or filing anomalies.",
+      "direction": "stable",
+      "confidence": "Verified",
+      "basis": [
+        "logs/gemini/2026-07-18/02-stocks-markets.md",
+        "logs/grok/2026-07-18/02-stocks-markets.md",
+        "logs/perplexity/2026-07-18/02-stocks-markets.md"
+      ],
+      "specifics": [
+        "SEC Form 4",
+        "U.S. equity markets",
+        "Grok markets account set"
+      ],
+      "falsifier": "A capture from the window identifies a named, material insider purchase backed by a current filing.",
+      "horizon": "This 48-hour collection window",
+      "hemisphere": "western",
+      "flag_hit": "Unusual insider filing activity or insider buys; no hit returned.",
+      "serves": [
+        "financial",
+        "monitoring"
+      ]
+    },
+    {
+      "id": "asia-commerce-divergence",
+      "domain": "07",
+      "claim": "Asian consumers are adopting social, quick, and agent-mediated commerce faster than Western consumers while shifting loyalty toward locally relevant brands and utility-based value.",
+      "direction": "escalating",
+      "confidence": "Verified",
+      "basis": [
+        "logs/deepseek/2026-07-18/07-demographics-culture.md",
+        "logs/kimi/2026-07-18/07-demographics-culture.md"
+      ],
+      "specifics": [
+        "NIQ",
+        "Accenture",
+        "DHL",
+        "TikTok Shop Southeast Asia",
+        "India tier-2 and tier-3 cities",
+        "Pop Mart",
+        "Singapore",
+        "Indonesia"
+      ],
+      "falsifier": "Independent transaction data show social, quick, and agentic commerce adoption flattening in Asia, Western adoption closing the gap, and local-brand share reversing.",
+      "horizon": "30-90 days for merchant and brand allocation changes; 12-24 months for Western diffusion",
+      "hemisphere": "eastern",
+      "flag_hit": "Asian consumer behavior is diverging from Western behavior, non-Western generational shifts may lead Western markets, and local values are changing global brand loyalty.",
+      "serves": [
+        "financial",
+        "research",
+        "content"
+      ]
+    },
+    {
+      "id": "tariff-frontloading-inventory-cliff",
+      "domain": "08",
+      "claim": "Tariff-deadline front-loading is raising freight volumes and rates despite softer underlying orders, creating a hidden inventory build and a risk of a late-Q3 freight demand cliff.",
+      "direction": "escalating",
+      "confidence": "Inferred",
+      "basis": [
+        "logs/gemini/2026-07-18/08-supply-chain.md",
+        "logs/perplexity/2026-07-18/08-supply-chain.md"
+      ],
+      "specifics": [
+        "U.S. East Coast ports",
+        "U.S. West Coast ports",
+        "July 24 tariff deadline",
+        "Baltic Dry Index",
+        "U.S. Department of Transportation Bureau of Transportation Statistics"
+      ],
+      "falsifier": "Inventory-to-sales ratios do not rise after the import surge, bookings and spot rates remain firm after the tariff deadlines, and final demand absorbs the added stock without a Q3 volume decline.",
+      "horizon": "30-90 days",
+      "hemisphere": "western",
+      "flag_hit": "Freight rates are diverging from manufacturing and order data in a pattern consistent with hidden inventory buildup.",
+      "serves": [
+        "financial",
+        "research",
+        "content"
+      ]
+    },
+    {
+      "id": "supply-stress-source-gap",
+      "domain": "08",
+      "claim": "Social retrieval found no urgent new logistics disruption while institutional and research captures reported multi-hub congestion, Gulf suspension, and U.S. capacity tightening, revealing a source-visibility gap rather than a resolved supply picture.",
+      "direction": "escalating",
+      "confidence": "Verified",
+      "basis": [
+        "logs/grok/2026-07-18/08-supply-chain.md",
+        "logs/perplexity/2026-07-18/08-supply-chain.md"
+      ],
+      "specifics": [
+        "Grok logistics account set",
+        "Singapore",
+        "Colombo",
+        "Busan",
+        "Shuaiba Port",
+        "U.S. DOT Bureau of Transportation Statistics"
+      ],
+      "falsifier": "Port and DOT operational data normalize or the named social accounts begin reporting the same disruptions with comparable urgency and specificity.",
+      "horizon": "7-14 days",
+      "hemisphere": "western",
+      "flag_hit": "Port congestion or rerouting is appearing at multiple unconnected locations simultaneously.",
+      "serves": [
+        "research",
+        "monitoring"
+      ]
+    },
+    {
+      "id": "critical-minerals-processing-squeeze",
+      "domain": "04",
+      "claim": "Critical-mineral risk is shifting from headline ore prices toward concentrated refining control, export licensing, and sulphuric-acid processing costs that can delay downstream supply even when metal spot prices look soft.",
+      "direction": "escalating",
+      "confidence": "Inferred",
+      "basis": [
+        "logs/deepseek/2026-07-18/04-energy-science.md",
+        "logs/gemini/2026-07-18/04-energy-science.md",
+        "logs/kimi/2026-07-18/04-energy-science.md"
+      ],
+      "specifics": [
+        "China Ministry of Commerce",
+        "European Union rare-earth crisis team",
+        "Japan-Korea Marker",
+        "Strait of Hormuz",
+        "MP Materials",
+        "USA Rare Earth",
+        "Indonesia"
+      ],
+      "falsifier": "Export licenses clear predictably, sulphur and acid costs normalize without project delays, and refined critical-mineral output grows fast enough to prevent downstream shortages.",
+      "horizon": "30-90 days",
+      "hemisphere": "cross",
+      "flag_hit": "Chinese rare-earth export policy is quietly shifting while critical-mineral supply-chain data diverges from commodity price signals.",
+      "serves": [
+        "financial",
+        "research",
+        "content"
+      ]
+    },
+    {
+      "id": "fusion-industrialization-stack",
+      "domain": "04",
+      "claim": "Fusion commercialization is advancing through industrial bottlenecks—repeatable drivers, target manufacturing, tritium-material computation, diagnostics, and public-market funding—rather than through a single plasma breakthrough.",
+      "direction": "emerging",
+      "confidence": "Verified",
+      "basis": [
+        "logs/deepseek/2026-07-18/04-energy-science.md",
+        "logs/grok/2026-07-18/04-energy-science.md",
+        "logs/perplexity/2026-07-18/04-energy-science.md"
+      ],
+      "specifics": [
+        "Hefei Institutes of Physical Science ITER IDFI project",
+        "Pacific Fusion",
+        "Lawrence Livermore National Laboratory",
+        "Inertia Enterprises",
+        "Oak Ridge National Laboratory",
+        "IBM",
+        "General Fusion",
+        "Commonwealth Fusion Systems"
+      ],
+      "falsifier": "The named driver, target-factory, diagnostics, and materials programs fail their next published milestones or cannot demonstrate repeatability and manufacturability outside one-off tests.",
+      "horizon": "30-90 days for milestone disclosures; multi-year for power deployment",
+      "hemisphere": "cross",
+      "flag_hit": "Fusion funding and government infrastructure are shifting, and Chinese fusion infrastructure has reached an under-covered milestone.",
+      "serves": [
+        "financial",
+        "research",
+        "content"
+      ]
+    },
+    {
+      "id": "sun-belt-housing-supply-gap",
+      "domain": "07",
+      "claim": "Persistent net migration into selected Southern and Mountain West corridors alongside contracting multifamily permits is setting up localized shelter-cost pressure despite softer prices in some oversupplied Sun Belt markets.",
+      "direction": "emerging",
+      "confidence": "Inferred",
+      "basis": [
+        "logs/gemini/2026-07-18/07-demographics-culture.md",
+        "logs/perplexity/2026-07-18/07-demographics-culture.md"
+      ],
+      "specifics": [
+        "U.S. Census Bureau",
+        "Southeast United States",
+        "Mountain West",
+        "Sun Belt multifamily markets",
+        "outlying metropolitan counties"
+      ],
+      "falsifier": "Permits and starts recover before vacancy tightens, migration stalls or reverses, or existing excess inventory keeps rents and shelter inflation flat in the named corridors.",
+      "horizon": "30-90 days for leading indicators; 18-24 months for the projected supply gap",
+      "hemisphere": "western",
+      "flag_hit": "Housing permit data is diverging from population movement data in ways that could create future supply gaps.",
+      "serves": [
+        "financial",
+        "research"
+      ]
+    }
+  ]
+}
