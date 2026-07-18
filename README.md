@@ -1,67 +1,92 @@
 # Orchestra
 
-Orchestra is a public archive of domain-specific intelligence collection prompts and AI responses. It currently contains the first manual collection cycle across Grok, Perplexity, Gemini, DeepSeek, and Kimi.
+Orchestra is a daily, multi-source intelligence collection and convergence engine. It asks five independent AI systems eight purpose-built questions, preserves every capture verbatim, produces two isolated syntheses, compares them mechanically, and publishes a reading without hiding disagreement or failure.
 
-## Browse the archive
+The repository is the public, remote-first archive. The governing architecture, guarantees, runbook, failure model, and build sequence live in [SPEC.md](SPEC.md).
 
-Start with the [logs index](logs/README.md), then choose an AI and collection date.
+## Current state
 
-```text
-logs/
-├── grok/
-│   ├── prompts.md
-│   └── YYYY-MM-DD/
-├── perplexity/
-│   ├── prompts.md
-│   └── YYYY-MM-DD/
-├── gemini/
-│   ├── prompts.md
-│   └── YYYY-MM-DD/
-├── deepseek/
-│   ├── prompts.md
-│   └── YYYY-MM-DD/
-└── kimi/
-    ├── prompts.md
-    └── YYYY-MM-DD/
-```
+| Stage | Status |
+|---|---|
+| Acquisition: five sources × eight domains | Built and observed |
+| Public archive and versioned prompt sets | Built |
+| Capture metadata, numbered filenames, and cycle manifest | Backfilled for the first cycle |
+| Eastern refusal-recovery prompt redesign | Prepared as `2026-07-18-v2` for the next cycle |
+| Completeness verification | Procedural; code enforcement remains next |
+| Dual synthesis, convergence, and daily reading | Next build stage |
+| Public website consumption layer | Planned |
 
-Each dated directory contains one Markdown file per collection domain. Every daily log preserves both the exact prompt and the AI response.
+## First complete cycle
 
-## Current archive
+- Cycle date: 2026-07-18
+- Sources: Grok, Perplexity, Gemini, DeepSeek, Kimi
+- Domains per source: 8
+- Complete captures: 40/40
+- Substantive captures: 38/40
+- Empty captures: 0
+- Wall clock: approximately 38 minutes
 
-- Collection date: 2026-07-18
-- AI layers: 5
-- Domains per AI: 8
-- Response logs: 40
-- Empty logs: 0
+DeepSeek refused Geopolitics / Conflict on submission and exact retry. Kimi's K3 agent failed twice on AI / Tech; K2.6 then refused. Both refusals remain in the archive as data.
 
-Two saved responses are refusals rather than substantive signal collections:
+Browse the [logs index](logs/README.md) or the [2026-07-18 cycle manifest](manifest/2026-07-18.md).
 
-- DeepSeek refused the Geopolitics / Conflict prompt on the initial submission and an exact retry.
-- Kimi's K3 agent failed twice on AI / Tech Breakthroughs; K2.6 then returned a refusal.
+## Architecture
 
-The refusals remain in the archive so the collection record is complete and does not silently hide missing coverage.
+Orchestra has three layers with hard seams:
 
-## Domains
+| Layer | Responsibility | Boundary |
+|---|---|---|
+| **Acquisition** | Open fresh AI sessions, send prompts, wait, verify, classify, and store raw captures | Exercises no judgment about meaning |
+| **Convergence** | Read files, synthesize twice in isolation, compare, and produce the reading | Does not know or control acquisition surfaces |
+| **Consumption** | Trading, research, content, monitoring, and the future public website | Receives artifacts and never writes backward into the engine |
 
-1. Crypto
-2. Stocks / Markets
-3. AI / Tech Breakthroughs
-4. Energy / Advanced Science
-5. Geopolitics / Conflict
-6. Major Companies / Business Intel
-7. Demographics / Consumer Behavior / Cultural Signal
-8. Supply Chain / Logistics / Infrastructure
+Artifacts flow outward only. Consumer state never re-enters collection or synthesis.
 
-## Adding another day
+## Consumer contract
 
-Create a new ISO-date directory under each participating AI:
+Orchestra promises three things:
+
+1. **Provenance** — every claim can trace to a source, prompt version, capture, and cycle.
+2. **Preserved disagreement** — divergent and asymmetric readings are not averaged away.
+3. **Honest failure** — refusals, truncations, retries, unavailable sources, and degraded cycles are surfaced.
+
+It does not promise that a reading is correct. It promises that the reading is an honest function of what the sources actually said.
+
+## Repository map
 
 ```text
-logs/<ai>/YYYY-MM-DD/
+orchestra/
+├── SPEC.md
+├── logs/<source>/
+│   ├── prompts.md
+│   └── YYYY-MM-DD/01-crypto.md ... 08-supply-chain.md
+├── manifest/YYYY-MM-DD.md
+├── synthesis/YYYY-MM-DD/
+├── convergence/YYYY-MM-DD/
+└── readings/YYYY-MM-DD.md
 ```
 
-Use the same domain filenames where possible. Update that AI's `prompts.md` whenever its standing prompt set changes.
+- [Raw logs and standing prompts](logs/)
+- [Cycle manifests](manifest/)
+- [Independent syntheses](synthesis/)
+- [Mechanical comparisons and preserved dissent](convergence/)
+- [Human-readable daily readings](readings/)
+
+## Archive discipline
+
+- Nothing is deleted.
+- Raw responses remain verbatim.
+- Corrections are additive and reference the original.
+- Prompt changes are versioned, never silently overwritten.
+- Every cycle commits, including degraded cycles.
+- Capture completeness and content substance are recorded separately.
+- The corpus is pushed remotely before synthesis begins.
+
+The 2026-07-18 metadata was backfilled during the SPEC v1.0 migration. Unknown timestamps and memory settings are explicitly marked `unknown` rather than guessed. Git history preserves the pre-migration archive.
+
+## Website direction
+
+A public website is planned as a consumption layer over these artifacts: a synthesis-first view, with dedicated pages for research, financial information, source-level evidence, disagreement, and archive history. The website will read from the engine's outputs; it will not write back into acquisition or convergence.
 
 ## License
 

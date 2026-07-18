@@ -1,36 +1,41 @@
 # Gemini prompts
 
-These are the standalone domain prompts sent to Gemini. Daily response logs remain paired with the exact prompt used for that run.
+**Current version:** `2026-07-18-v1`
 
-## Crypto
+## Version history
+
+- `2026-07-18-v1` — initial manual-cycle prompt set.
+
+## Prompt set — 2026-07-18-v1
+
+### 01 — Crypto
 
 Using Google’s full index including Google Finance, Google Scholar, and government databases, search the last 48 hours for developments in cryptocurrency markets, DeFi infrastructure, and blockchain regulation. Prioritize central bank research papers, BIS reports, academic blockchain research, government budget allocations toward or away from digital asset infrastructure, and Google Finance data on crypto-adjacent public companies. Summarize the top 10 developments ranked by significance. Flag anything where central bank research contradicts public regulatory messaging, where crypto-adjacent public company financials are moving without an obvious headline reason, where academic research is converging on the same blockchain vulnerability or opportunity from unrelated institutions, or where government budget language around digital assets has quietly shifted.
 
-## Stocks / Markets
+### 02 — Stocks / Markets
 
 Using Google’s full index including Google Finance, Google Scholar, earnings databases, and government economic data, search the last 48 hours for developments in equity markets and macro economy. Prioritize BLS employment data, BEA economic releases, Federal Reserve research papers, World Bank reports, earnings call transcripts, and Google Finance sector movement data. Summarize the top 10 developments ranked by significance. Flag anything where economic data releases contradict what markets are pricing in, where earnings call language has shifted tone without a clear catalyst, where multiple unrelated sectors are showing the same unusual pattern in Google Finance data, or where academic economic research is pointing at a structural shift that hasn’t reached mainstream financial coverage yet.
 
-## AI / Tech Breakthroughs
+### 03 — AI / Tech Breakthroughs
 
 Using Google’s full index including Google Scholar, ArXiv via Google, government AI policy documents, and Google Finance tech sector data, search the last 48 hours for developments in artificial intelligence, emerging technology, and major tech company moves. Prioritize peer-reviewed preprints, DARPA and DOD funding announcements, patent filings indexed by Google Patents, university research releases, and earnings data for AI-adjacent public companies. Summarize the top 10 developments ranked by significance. Flag anything where multiple unrelated university labs are publishing on the same capability simultaneously, where government defense funding is quietly moving toward a specific AI application, where Google Patents shows a surge in filings around a specific technology, or where a major tech company’s financial data is diverging from its public narrative about AI investment.
 
-## Energy / Advanced Science
+### 04 — Energy / Advanced Science
 
 Using Google’s full index including Google Scholar, government energy databases, DOE budget documents, and Google Finance energy sector data, search the last 48 hours for developments in energy innovation including fusion, advanced fission, grid technology, materials science, and critical minerals. Prioritize DOE funding announcements, IAEA reports, peer-reviewed materials science preprints, patent filings, university research releases, and financial data on energy public companies. Summarize the top 10 developments ranked by significance. Flag anything where multiple unrelated research institutions are publishing on the same materials breakthrough simultaneously, where DOE budget documents reveal a funding shift not reflected in public announcements, where energy company financials are moving in ways that suggest foreknowledge of a policy or infrastructure change, or where critical mineral supply chain data is diverging from commodity price signals.
 
-## Geopolitics / Conflict
+### 05 — Geopolitics / Conflict
 
 Using Google’s full index including Google Scholar, UN document databases, government press releases, think tank publications, and long-form investigative sources, search the last 48 hours for developments in geopolitics, active conflict zones, and international power shifts. Prioritize UN General Assembly and Security Council documents, government budget allocations toward defense or foreign aid, academic geopolitical risk research, SIPRI data, and investigative journalism from regional outlets. Summarize the top 10 developments ranked by significance. Flag anything where defense budget allocations contradict public diplomatic messaging, where academic conflict research is converging on the same escalation pattern from unrelated institutions, where commodity prices are moving in ways consistent with foreknowledge of a geopolitical event, where UN document language has quietly shifted from prior positions, or where a major power’s public statements and actual resource movements are pointing in opposite directions.
 
-## Major Companies / Business Intel
+### 06 — Major Companies / Business Intel
 
 Using Google’s full index including Google Finance, Google Scholar, SEC EDGAR full-text search, earnings transcript databases, and long-form business investigative sources, search the last 48 hours for developments in major company strategy, acquisitions, leadership changes, and market moves. Prioritize SEC 8-K and 13-F full text, FTC and DOJ antitrust filing databases, earnings call transcripts, Google Finance data on unusual volume or price movement, and academic research on specific industries or companies. Summarize the top 10 developments ranked by significance. Flag anything where Google Finance shows unusual volume or price movement without a corresponding headline, where earnings call transcript language has shifted compared to prior quarters, where multiple large companies in the same sector filed similar documents within 48 hours of each other, where an executive’s LinkedIn or public profile quietly changed before an official announcement, or where antitrust language in DOJ or FTC documents has become more specific about a named company or sector.
 
-## Demographics / Consumer Behavior / Cultural Signal
+### 07 — Demographics / Consumer Behavior / Cultural Signal
 
 Using Google’s full index including Google Scholar, Google Trends data, government census databases, retail earnings transcripts, and long-form demographic research, search the last 48 hours for developments in population movement, consumer behavior, and cultural signal. Prioritize Census Bureau and BLS data releases, academic demographic research, retail earnings call transcripts, urban planning documents, and migration studies. Summarize the top 10 developments ranked by significance. Flag anything where Google Trends data shows a search behavior shift not yet reflected in retail or financial data, where academic demographic research is converging on the same population movement pattern from unrelated institutions, where retail earnings transcript language has shifted in ways that suggest a structural consumer behavior change rather than a cyclical one, where housing permit data is diverging from population movement data in ways that create future supply gaps, or where generational spending patterns are shifting in ways that contradict current market valuations of consumer-facing companies.
 
-## Supply Chain / Logistics / Infrastructure
+### 08 — Supply Chain / Logistics / Infrastructure
 
 Using Google’s full index including Google Scholar, government infrastructure databases, shipping data indices, patent filings, and long-form supply chain research, search the last 48 hours for developments in global supply chains, logistics, and physical infrastructure. Prioritize DOT and Army Corps infrastructure filings, port authority operational data, academic supply chain research, freight rate databases, manufacturing capacity reports, and patent filings related to logistics automation and infrastructure technology. Summarize the top 10 developments ranked by significance. Flag anything where academic supply chain research is converging on the same vulnerability or chokepoint from unrelated institutions, where patent filings show a surge in logistics automation or infrastructure resilience technology suggesting anticipation of a specific disruption, where freight rate data is diverging from manufacturing output data in ways that suggest hidden inventory buildup or supply gap, where government infrastructure budget documents reveal emergency spending not reflected in public announcements, or where multiple unrelated industries are simultaneously reporting the same component shortage or logistics bottleneck.
-
