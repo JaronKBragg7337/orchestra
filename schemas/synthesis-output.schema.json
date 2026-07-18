@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/JaronKBragg7337/orchestra/schemas/synthesis-output.schema.json",
+  "title": "Orchestra synthesis output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "cycle_date", "synthesizer", "prompt_version", "context", "items"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "cycle_date": { "type": "string", "format": "date" },
+    "synthesizer": { "enum": ["claude", "codex"] },
+    "prompt_version": { "const": "1.0" },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["read_captures", "read_prior_synthesis", "read_tracker", "read_prior_readings", "read_prompts", "other_context"],
+      "properties": {
+        "read_captures": { "const": true },
+        "read_prior_synthesis": { "type": ["string", "null"] },
+        "read_tracker": { "type": "boolean" },
+        "read_prior_readings": { "type": ["string", "null"] },
+        "read_prompts": { "type": "boolean" },
+        "other_context": { "type": ["string", "null"] }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "synthesis-item.schema.json" }
+    }
+  }
+}

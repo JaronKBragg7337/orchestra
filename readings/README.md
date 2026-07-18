@@ -1,5 +1,17 @@
 # Daily readings
 
-The reading is the human consumption artifact produced after collection, two isolated syntheses, and mechanical comparison.
+The reading is the human consumption artifact produced after collection, two context-declared syntheses, comparison, and tracker resolution.
 
-Its seven sections are CONVERGENT, DIVERGENT, ASYMMETRIC, SILENCE, CONTRADICTION, CROSS-DOMAIN CONNECTIONS, and FLAGS. No readings have been produced yet.
+Its nine sections are:
+
+1. CONVERGENT
+2. DIVERGENT
+3. ASYMMETRIC
+4. SILENCE
+5. CONTRADICTION
+6. CROSS-DOMAIN CONNECTIONS
+7. FLAGS
+8. TRACKED SIGNAL MOVEMENT
+9. CYCLE HEALTH
+
+No readings have been produced yet.

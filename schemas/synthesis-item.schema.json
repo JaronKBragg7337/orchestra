@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/JaronKBragg7337/orchestra/schemas/synthesis-item.schema.json",
+  "title": "Orchestra synthesis item",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "domain",
+    "claim",
+    "direction",
+    "confidence",
+    "basis",
+    "specifics",
+    "falsifier",
+    "horizon",
+    "hemisphere",
+    "flag_hit",
+    "serves"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "domain": { "type": "string", "pattern": "^0[1-8]$" },
+    "claim": { "type": "string", "minLength": 1 },
+    "direction": { "enum": ["emerging", "escalating", "resolving", "stable", "reversing"] },
+    "confidence": { "enum": ["Verified", "Inferred", "Assumed"] },
+    "basis": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^logs/(grok|perplexity|gemini|deepseek|kimi)/\\d{4}-\\d{2}-\\d{2}/0[1-8]-[a-z0-9-]+\\.md$" }
+    },
+    "specifics": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "falsifier": { "type": "string", "minLength": 1 },
+    "horizon": { "type": "string", "minLength": 1 },
+    "hemisphere": { "enum": ["western", "eastern", "cross", "eastern-split"] },
+    "flag_hit": { "type": ["string", "null"] },
+    "serves": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "enum": ["financial", "research", "content", "monitoring"] }
+    }
+  }
+}
