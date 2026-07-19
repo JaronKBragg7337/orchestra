@@ -15,3 +15,7 @@ Each comparison item uses one of six context-aware states:
 - `SUSPECT`
 
 The state is derived from the two synthesis context declarations plus the comparison result. Comparison belongs to the harness, not to a collector or synthesizer. See [SPEC.md](../SPEC.md).
+
+Available cycles:
+
+- [2026-07-18](2026-07-18/) — comparison and preserved dissent for the first complete cycle.

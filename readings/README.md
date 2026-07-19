@@ -14,4 +14,6 @@ Its nine sections are:
 8. TRACKED SIGNAL MOVEMENT
 9. CYCLE HEALTH
 
-No readings have been produced yet.
+Available readings:
+
+- [2026-07-18](2026-07-18.md) — first complete nine-section reading.
