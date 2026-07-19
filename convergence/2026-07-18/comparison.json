@@ -1,0 +1,256 @@
+{
+  "schema_version": "1.0",
+  "cycle_date": "2026-07-18",
+  "synthesis_context": {
+    "a": {
+      "read_captures": true,
+      "read_prior_synthesis": null,
+      "read_tracker": true,
+      "read_prior_readings": null,
+      "read_prompts": true,
+      "other_context": "manifest/2026-07-18.md; schemas/synthesis-output.schema.json; schemas/synthesis-item.schema.json; synthesis/README.md; logs/{grok,perplexity,gemini,deepseek,kimi}/prompts.md; tracking/signals.md and tracking/events.jsonl (empty scaffolding, no signals yet); no prior synthesis or readings exist for any cycle"
+    },
+    "b": {
+      "read_captures": true,
+      "read_prior_synthesis": null,
+      "read_tracker": false,
+      "read_prior_readings": null,
+      "read_prompts": true,
+      "other_context": "Consulted synthesis/PROMPT.md, schemas/synthesis-output.schema.json, schemas/synthesis-item.schema.json, manifest/2026-07-18.md, the dated capture-file inventory, and git status. Synthesis A existed on GitHub but was not present in the stale local checkout during synthesis and was not read; it was fetched only afterward for publication."
+    }
+  },
+  "items": [
+    {
+      "comparison_id": "cmp-20260718-001",
+      "state": "INDEPENDENT_CONVERGENT",
+      "synthesis_a_items": ["iran-hormuz-ceasefire-collapse", "commodity-war-premium-frontrun", "asian-lng-eastward-pull", "july-cpi-reversal-risk"],
+      "synthesis_b_items": ["gulf-conflict-logistics-inflation"],
+      "rationale": "Both syntheses independently identify renewed Gulf conflict as a cross-domain shock transmitted through oil, LNG, ports, freight risk, and inflation. A decomposes the mechanism into four claims; B keeps it integrated. Exact chronology, legal attribution, and extraordinary transit-fee claims remain unresolved and are not treated as convergent facts.",
+      "signal_id": "ORC-20260718-009"
+    },
+    {
+      "comparison_id": "cmp-20260718-002",
+      "state": "INDEPENDENT_CONVERGENT",
+      "synthesis_a_items": ["ai-load-grid-coupling"],
+      "synthesis_b_items": ["ai-compute-power-pivot"],
+      "rationale": "Both independently identify AI data-center load as an explicit driver of transmission planning, grid reliability rules, and advanced-reactor deployment. A includes Eastern corroboration through JERA and tags the claim cross-hemisphere; B limits its core evidence to Western institutions.",
+      "signal_id": "ORC-20260718-001"
+    },
+    {
+      "comparison_id": "cmp-20260718-003",
+      "state": "INDEPENDENT_CONVERGENT",
+      "synthesis_a_items": ["kimi-k3-open-weight-release"],
+      "synthesis_b_items": ["kimi-k3-open-weight-pressure"],
+      "rationale": "Both independently identify Kimi K3's promised open-weight release, coding-benchmark position, and lower-cost framing as pressure on Western frontier-model pricing and margins. A calls the process escalating; B calls it emerging.",
+      "signal_id": "ORC-20260718-002"
+    },
+    {
+      "comparison_id": "cmp-20260718-004",
+      "state": "INDEPENDENT_CONVERGENT",
+      "synthesis_a_items": ["stablecoin-sovereign-absorption", "mbridge-brics-payment-rails"],
+      "synthesis_b_items": ["sovereign-digital-payment-rails"],
+      "rationale": "Both identify digital money moving toward sovereign and bank-controlled rails. A separates cross-hemisphere state absorption from Eastern non-SWIFT deployment and preserves the U.S.-China interest-policy contrast; B combines the Eastern operational architecture into one claim.",
+      "signal_id": "ORC-20260718-008"
+    },
+    {
+      "comparison_id": "cmp-20260718-005",
+      "state": "INDEPENDENT_CONVERGENT",
+      "synthesis_a_items": ["middle-corridor-activation"],
+      "synthesis_b_items": ["aktau-middle-corridor"],
+      "rationale": "Both identify the Aktau hub and integrated China-Kazakhstan-Caspian network as movement from strategy toward operation. A calls it escalating and emphasizes Western silence; B calls it emerging and emphasizes the need for repeat-throughput proof.",
+      "signal_id": "ORC-20260718-005"
+    },
+    {
+      "comparison_id": "cmp-20260718-006",
+      "state": "INDEPENDENT_CONVERGENT",
+      "synthesis_a_items": ["rare-earth-licensing-shift", "sulphur-acid-chokepoint"],
+      "synthesis_b_items": ["critical-minerals-processing-squeeze"],
+      "rationale": "Both identify critical-mineral exposure shifting from ore prices toward licensing, refining control, and sulphuric-acid inputs. A treats licensing and acid disruption as separate verified components; B marks their combined downstream-throughput consequence inferred.",
+      "signal_id": "ORC-20260718-011"
+    },
+    {
+      "comparison_id": "cmp-20260718-007",
+      "state": "INDEPENDENT_CONVERGENT",
+      "synthesis_a_items": ["hang-seng-data-contradiction", "china-gdp-framing-split"],
+      "synthesis_b_items": ["china-macro-record-conflict"],
+      "rationale": "Both independently conclude that the Eastern captures contain irreconcilable China GDP and same-day exchange figures and cannot support a single quantitative conclusion until NBS and exchange records are checked. The conflict itself, not either number, is the convergent finding.",
+      "signal_id": "ORC-20260718-003"
+    },
+    {
+      "comparison_id": "cmp-20260718-008",
+      "state": "INDEPENDENT_CONVERGENT",
+      "synthesis_a_items": ["kimi-ai-tech-refusal", "deepseek-geopolitics-refusal"],
+      "synthesis_b_items": ["eastern-collection-friction"],
+      "rationale": "Both distinguish content refusal from unavailable attempts and identify complementary Kimi and DeepSeek failure boundaries. A ledgers each refusal separately; B combines refusals, model changes, and successful retries into a cycle-health claim. These items support collection behavior only, not world claims.",
+      "signal_id": "ORC-20260718-004"
+    },
+    {
+      "comparison_id": "cmp-20260718-009",
+      "state": "INDEPENDENT_CONVERGENT",
+      "synthesis_a_items": ["tariff-frontloading-inventory-cliff"],
+      "synthesis_b_items": ["tariff-frontloading-inventory-cliff"],
+      "rationale": "Near-exact independent convergence: both infer that tariff-deadline front-loading is raising freight demand despite softer orders and may produce excess inventory and a late-Q3 freight cliff.",
+      "signal_id": "ORC-20260718-006"
+    },
+    {
+      "comparison_id": "cmp-20260718-010",
+      "state": "INDEPENDENT_CONVERGENT",
+      "synthesis_a_items": ["sunbelt-permit-supply-gap"],
+      "synthesis_b_items": ["sun-belt-housing-supply-gap"],
+      "rationale": "Both infer that persistent migration plus contracting multifamily permits may create localized shelter pressure over 18-24 months. B more explicitly preserves softness in already oversupplied Sun Belt metros.",
+      "signal_id": "ORC-20260718-007"
+    },
+    {
+      "comparison_id": "cmp-20260718-011",
+      "state": "INDEPENDENT_CONVERGENT",
+      "synthesis_a_items": ["waico-governance-fork"],
+      "synthesis_b_items": ["china-ai-governance-stack"],
+      "rationale": "Both identify China coupling AI capability with international standards-setting. A centers WAICO as an intergovernmental pole; B defines a broader stack spanning domestic compute, regulators, training, and standards programs.",
+      "signal_id": "ORC-20260718-010"
+    },
+    {
+      "comparison_id": "cmp-20260718-012",
+      "state": "INDEPENDENT_CONVERGENT",
+      "synthesis_a_items": ["fusion-capital-inflection"],
+      "synthesis_b_items": ["fusion-industrialization-stack"],
+      "rationale": "Both identify fusion moving toward commercialization. A centers public-market entry and funding scale and tags the claim Western; B emphasizes drivers, targets, diagnostics, materials computation, and finance and tags the broader stack cross-hemisphere.",
+      "signal_id": "ORC-20260718-012"
+    },
+    {
+      "comparison_id": "cmp-20260718-013",
+      "state": "INDEPENDENT_CONVERGENT",
+      "synthesis_a_items": ["asia-consumer-bifurcation"],
+      "synthesis_b_items": ["asia-commerce-divergence"],
+      "rationale": "Both identify structural Asian consumer divergence from the West. A emphasizes income, geography, services, and demographic bifurcation; B emphasizes social, quick, agent-mediated, and local-brand commerce. The claims overlap but are not interchangeable.",
+      "signal_id": "ORC-20260718-013"
+    },
+    {
+      "comparison_id": "cmp-20260718-014",
+      "state": "INDEPENDENT_CONVERGENT",
+      "synthesis_a_items": ["practitioner-institutional-divergence"],
+      "synthesis_b_items": ["supply-stress-source-gap"],
+      "rationale": "Both find that engagement-ranked social retrieval under-detected logistics stress visible in institutional and operational data. A extends the visibility-gap claim to crypto regulation and market anomalies; B confines its ledger claim to logistics.",
+      "signal_id": "ORC-20260718-014"
+    },
+    {
+      "comparison_id": "cmp-20260718-015",
+      "state": "ASYMMETRIC",
+      "synthesis_a_items": ["japan-crypto-reclassification"],
+      "synthesis_b_items": [],
+      "rationale": "Claude alone ledgered Japan's reported crypto-law reclassification, penalties, and future tax treatment. Codex's smaller ledger did not address it; omission is not disagreement.",
+      "signal_id": null
+    },
+    {
+      "comparison_id": "cmp-20260718-016",
+      "state": "ASYMMETRIC",
+      "synthesis_a_items": ["bitcoin-treasury-stress"],
+      "synthesis_b_items": [],
+      "rationale": "Claude alone inferred stress in the corporate bitcoin-treasury model. Codex did not ledger an equivalent claim.",
+      "signal_id": null
+    },
+    {
+      "comparison_id": "cmp-20260718-017",
+      "state": "ASYMMETRIC",
+      "synthesis_a_items": ["ai-equity-repricing"],
+      "synthesis_b_items": [],
+      "rationale": "Claude alone ledgered a broad global AI and semiconductor equity rotation, especially in Asia. Codex's Kimi K3 item covers one possible margin mechanism but not the broader market claim.",
+      "signal_id": null
+    },
+    {
+      "comparison_id": "cmp-20260718-018",
+      "state": "ASYMMETRIC",
+      "synthesis_a_items": ["warsh-hawkish-turn"],
+      "synthesis_b_items": [],
+      "rationale": "Claude alone ledgered a hawkish communications break under Fed Chair Kevin Warsh. Codex did not ledger an equivalent monetary-policy claim.",
+      "signal_id": null
+    },
+    {
+      "comparison_id": "cmp-20260718-019",
+      "state": "ASYMMETRIC",
+      "synthesis_a_items": ["reasoning-efficiency-convergence"],
+      "synthesis_b_items": [],
+      "rationale": "Claude alone inferred cross-organization convergence on reasoning efficiency and sparse activation as a competitive axis.",
+      "signal_id": null
+    },
+    {
+      "comparison_id": "cmp-20260718-020",
+      "state": "ASYMMETRIC",
+      "synthesis_a_items": ["model-restriction-reversals"],
+      "synthesis_b_items": [],
+      "rationale": "Claude alone ledgered government-negotiated model-release restriction reversals as de facto licensing without a formal regime.",
+      "signal_id": null
+    },
+    {
+      "comparison_id": "cmp-20260718-021",
+      "state": "ASYMMETRIC",
+      "synthesis_a_items": ["defense-compute-consolidation"],
+      "synthesis_b_items": [],
+      "rationale": "Claude alone ledgered consolidation of Pentagon AI compute among a small provider set and the related congressional disclosure deadline.",
+      "signal_id": null
+    },
+    {
+      "comparison_id": "cmp-20260718-022",
+      "state": "ASYMMETRIC",
+      "synthesis_a_items": ["ukraine-logistics-warfare"],
+      "synthesis_b_items": [],
+      "rationale": "Claude alone ledgered Ukraine's reported shift toward economic and logistics targets. Codex did not ledger an equivalent claim.",
+      "signal_id": null
+    },
+    {
+      "comparison_id": "cmp-20260718-023",
+      "state": "ASYMMETRIC",
+      "synthesis_a_items": ["europe-defense-structural-shift"],
+      "synthesis_b_items": [],
+      "rationale": "Claude alone ledgered European defense spending as structural rearmament rather than short-term Ukraine support.",
+      "signal_id": null
+    },
+    {
+      "comparison_id": "cmp-20260718-024",
+      "state": "ASYMMETRIC",
+      "synthesis_a_items": ["paramount-wbd-injunction-ruling"],
+      "synthesis_b_items": [],
+      "rationale": "Claude alone ledgered the reported state-level injunction challenge to the Paramount-WBD transaction and its hard ruling date.",
+      "signal_id": null
+    },
+    {
+      "comparison_id": "cmp-20260718-025",
+      "state": "ASYMMETRIC",
+      "synthesis_a_items": ["japan-capital-repositioning"],
+      "synthesis_b_items": [],
+      "rationale": "Claude alone inferred coordinated Japanese official-capital repositioning through GPIF pressure and JERA's reported U.S. listing study.",
+      "signal_id": null
+    },
+    {
+      "comparison_id": "cmp-20260718-026",
+      "state": "ASYMMETRIC",
+      "synthesis_a_items": ["perplexity-edgar-blindness"],
+      "synthesis_b_items": [],
+      "rationale": "Claude alone ledgered Perplexity's domain-06 inability to provide a current official-record read. Codex did not make it a ledger item.",
+      "signal_id": null
+    },
+    {
+      "comparison_id": "cmp-20260718-027",
+      "state": "ASYMMETRIC",
+      "synthesis_a_items": ["western-consumer-defensive-shift"],
+      "synthesis_b_items": [],
+      "rationale": "Claude alone ledgered defensive repositioning by Western consumers beneath nominal retail growth.",
+      "signal_id": null
+    },
+    {
+      "comparison_id": "cmp-20260718-028",
+      "state": "ASYMMETRIC",
+      "synthesis_a_items": ["dover-ees-chokepoint"],
+      "synthesis_b_items": [],
+      "rationale": "Claude alone ledgered Dover's reported biometric Entry/Exit System chokepoint ahead of peak summer traffic.",
+      "signal_id": null
+    },
+    {
+      "comparison_id": "cmp-20260718-029",
+      "state": "ASYMMETRIC",
+      "synthesis_a_items": [],
+      "synthesis_b_items": ["insider-buying-silence"],
+      "rationale": "Codex alone ledgered the absence of a substantiated unusual insider-buying signal. Claude's prose notes the same silence but does not provide a ledger item, so the asymmetry is structural rather than substantive.",
+      "signal_id": null
+    }
+  ]
+}
